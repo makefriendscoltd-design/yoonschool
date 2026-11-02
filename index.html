@@ -461,9 +461,9 @@ footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-cont
             <div class="ev"><h3>유튜브 메이크패밀리</h3><p>파는 법을 영상으로 전부 공개</p></div>
             <div class="ev"><h3>스스학개론 사업자 PT</h3><p>스마트스토어 강의와 단 10명 1:1 PT</p></div>
             <div class="ev"><h3>인스타그램 시작</h3><p>콘텐츠로 직접 알리기</p></div>
+            <div class="ev"><h3>패밀리데이 시작</h3><p>매달 여는 오프라인 모임</p></div>
             <div class="ev"><h3>AIMAX 런칭</h3><p>AI 마케팅 자동화</p></div>
             <div class="ev"><h3>잎순 총판 닥터드롭 기획</h3><p>브랜드를 맡아서 팝니다</p></div>
-            <div class="ev"><h3>패밀리데이</h3><p>매달 오프라인 모임</p></div>
             <div class="ev"><h3>책 출간</h3><p>『나는 실패를 팔아 150억을 벌었다』</p></div>
             <div class="ev"><h3>패밀리데이 부산</h3><p>서울과 부산을 오가며</p></div>
             <div class="ev"><h3>AI 사장학교 1기 개강</h3><p>10월 사장님 일을 맡길 AI 직원 만들기</p></div>
@@ -897,7 +897,7 @@ footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-cont
     portrait.style.setProperty('--py', `${(1 - p) * 30}px`);
     if (idx === histIdx) return;
     histIdx = idx;
-    ['2018','2018','2019','2020','2020','2021','2021','2022','2023','2023','2023','2024','2025','2025','2025','2026','2026','2026','2026','2026'][idx].split('').forEach((d, i) => { yearCols[i].style.transform = `translateY(${-d}em)`; yearCols[i].style.transitionDelay = `${i * 60}ms`; });
+    ['2018','2018','2019','2020','2020','2021','2021','2022','2023','2023','2023','2024','2024','2025','2025','2026','2026','2026','2026','2026'][idx].split('').forEach((d, i) => { yearCols[i].style.transform = `translateY(${-d}em)`; yearCols[i].style.transitionDelay = `${i * 60}ms`; });
     evs.forEach((e, i) => { e.classList.toggle('on', i === idx); e.classList.toggle('gone', i < idx); });
   }
 
