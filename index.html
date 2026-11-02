@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="favicon.png">
+<meta name="description" content="메이크패밀리 윤대표가 직접 경험한 방법을 무료로 전수합니다 매 회차 최대 10명 면접 선발">
+<meta property="og:type" content="website">
+<meta property="og:title" content="윤대표의 이커머스 사장학교">
+<meta property="og:description" content="당신이 보는 것은 누군가의 시작입니다 윤대표가 직접 경험한 방법을 무료로 전수합니다">
+<meta property="og:image" content="https://yoonschool.makefamily.kr/og.jpg">
+<meta property="og:url" content="https://yoonschool.makefamily.kr/">
+<title>윤대표의 이커머스 사장학교</title>
+<style>
+/* 레이아웃: 흰 바탕 코발트 한 색. 첫 화면 질문 → 2단 이야기
+   왼쪽에 고정된 알 하나가 화자. 1단계부터 스크롤에 맞춰 금이 그려지고 4단계에서 탁 깨진다
+   마지막 질문에서 새 알로 되돌아간다. 한 가지 밝은 세계로 고정 */
+@font-face { font-family: "Pretendard Local"; src: url("PretendardVariable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+:root {
+  --bg: #FFFFFF;
+  --fg: #0A1638;
+  --mute: #6B7594;
+  --dim: #A3ABC4;
+  --line: #E4E9F5;
+  --tint: #F1F5FE;
+  --cobalt: #0A3FCC;
+  --cobalt-deep: #062A8C;
+  --cobalt-light: #5C86FF;
+  --sans: "Pretendard Local", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", system-ui, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 17px; line-height: 1.75; word-break: keep-all; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+h1, h2, h3, p, ul, ol { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+h1, h2, h3 { text-wrap: balance; font-weight: 700; letter-spacing: -0.035em; }
+.wrap { max-width: 1160px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--cobalt); outline-offset: 3px; }
+.mute { color: var(--mute); }
+.co { color: var(--cobalt); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; height: 52px; padding: 0 28px; border-radius: 14px; font: 700 16px/1 var(--sans); text-decoration: none; border: 0; cursor: pointer; background: var(--cobalt); color: #FFFFFF; transition: background .15s ease; }
+.btn:hover { background: var(--cobalt-deep); }
+
+/* 헤더 */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 58px; }
+.logo { display: flex; align-items: center; gap: 8px; color: var(--fg); text-decoration: none; font-weight: 800; font-size: 16px; letter-spacing: -0.02em; }
+.logo img { width: 36px; height: auto; display: block; }
+.nav a.link { color: var(--cobalt); font-size: 15px; font-weight: 700; text-decoration: none; }
+
+/* 첫 화면 */
+.open { border-top: 1px solid var(--line); }
+.open .wrap { padding-block: 120px 110px; }
+.project { font-size: 14px; font-weight: 600; color: var(--mute); }
+.project b { color: var(--cobalt); font-weight: 700; letter-spacing: .04em; margin-left: 6px; }
+.open .q { margin-top: 20px; font-size: clamp(32px, 4.6vw, 56px); line-height: 1.25; max-width: 13em; }
+.pick { margin-top: 40px; display: grid; gap: 10px; max-width: 560px; }
+.pick li { display: grid; grid-template-columns: 36px minmax(0, 1fr); align-items: center; padding: 16px 20px; border-radius: 14px; border: 1px solid var(--line); font-size: clamp(17px, 1.8vw, 20px); font-weight: 600; }
+.pick li span:first-child { color: var(--dim); font-weight: 500; font-variant-numeric: tabular-nums; }
+.pick li.out { color: var(--dim); }
+.pick li.out span:last-child { text-decoration: line-through; text-decoration-color: var(--cobalt); text-decoration-thickness: 2px; }
+.pick li.in { border-color: var(--cobalt); background: var(--tint); color: var(--cobalt); }
+.open .why { margin-top: 26px; font-size: 18px; }
+.cue { margin-top: 56px; display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--mute); }
+.cue i { width: 1px; height: 36px; background: linear-gradient(var(--cobalt), transparent); }
+
+/* 이야기 2단 */
+.story { border-top: 1px solid var(--line); }
+.story .wrap { display: grid; grid-template-columns: 400px minmax(0, 1fr); gap: 64px; }
+.stage { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 58px); height: calc(100vh - 58px); display: grid; place-items: center; align-content: center; gap: 8px; }
+.stage svg { width: 100%; max-width: 380px; height: auto; display: block; overflow: visible; }
+.status { text-align: center; display: grid; gap: 2px; min-height: 54px; }
+.status b { font-size: 16px; font-weight: 700; color: var(--cobalt); }
+.status span { font-size: 14px; color: var(--mute); }
+.flash { position: fixed; inset: 0; background: #FFFFFF; opacity: 0; pointer-events: none; z-index: 25; }
+
+.ch { padding-block: 120px; border-bottom: 1px solid var(--line); display: grid; gap: 24px; align-content: start; min-height: 80vh; }
+.ch:last-child { border-bottom: 0; }
+.ch .no { font-size: 14px; font-weight: 700; color: var(--cobalt); font-variant-numeric: tabular-nums; }
+.ch h2 { font-size: clamp(28px, 3.4vw, 42px); line-height: 1.3; }
+.ch p { max-width: 32em; }
+.big { font-size: clamp(21px, 2.4vw, 27px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.45; }
+.strike li { padding-block: 14px; border-bottom: 1px solid var(--line); font-size: clamp(19px, 2vw, 23px); font-weight: 600; color: var(--dim); text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.strike li:first-child { padding-top: 0; }
+.recruit { display: grid; gap: 6px; font-size: clamp(19px, 2vw, 22px); font-weight: 600; letter-spacing: -0.02em; }
+.recruit .x { color: var(--dim); text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.tag { justify-self: start; font-size: 14px; font-weight: 700; padding: 6px 14px; border-radius: 999px; background: var(--cobalt); color: #FFFFFF; }
+.three li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 16px; align-items: center; padding-block: 16px; border-bottom: 1px solid var(--line); font-size: clamp(19px, 2vw, 22px); font-weight: 600; }
+.three li:first-child { padding-top: 0; }
+.three svg { width: 28px; height: 28px; }
+.rules { display: flex; flex-wrap: wrap; gap: 8px; }
+.rules span { font-size: 14px; font-weight: 600; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--line); color: var(--mute); text-decoration: line-through; }
+.items { display: grid; gap: 8px; }
+.items li { padding-left: 18px; position: relative; }
+.items li::before { content: ""; position: absolute; left: 0; top: .68em; width: 7px; height: 7px; border-radius: 50%; background: var(--cobalt); }
+.vow { border-radius: 14px; background: var(--tint); border: 1px solid #D7E0FA; color: var(--cobalt-deep); padding: 20px 22px; font-size: 18px; font-weight: 700; line-height: 1.6; max-width: 30em; }
+.vow small { display: block; margin-top: 8px; font-size: 13px; font-weight: 500; color: var(--mute); }
+.gate { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; align-items: start; padding: 14px 16px; border: 1px dashed #C9D4F2; border-radius: 12px; font-size: 15px; font-weight: 600; max-width: 32em; }
+.gate svg { width: 20px; height: 20px; margin-top: 3px; }
+.teams { display: flex; flex-wrap: wrap; gap: 24px 40px; }
+.team { display: grid; gap: 10px; }
+.team .seats { display: flex; gap: 8px; }
+.team .seats i { width: 22px; height: 28px; border-radius: 50% 50% 46% 46% / 58% 58% 42% 42%; background: var(--cobalt); }
+.team span { font-size: 14px; color: var(--mute); font-weight: 600; }
+.fit { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px 48px; }
+.fit h3 { font-size: 18px; margin-bottom: 10px; }
+.fit li { padding-block: 12px; border-bottom: 1px solid var(--line); }
+.fit .x li { color: var(--dim); text-decoration: line-through; }
+.fit .o li { font-weight: 600; }
+.after li { padding-block: 14px; border-bottom: 1px solid var(--line); font-size: clamp(19px, 2vw, 22px); font-weight: 600; }
+.after li:first-child { padding-top: 0; }
+
+.terms { display: grid; gap: 8px; color: var(--mute); }
+.terms li::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--cobalt); margin-right: 12px; vertical-align: middle; }
+form { background: var(--tint); border-radius: 20px; padding: 28px; display: grid; gap: 16px; max-width: 520px; }
+label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; }
+.hint { font-weight: 400; color: var(--mute); }
+input, textarea { font: 400 16px/1.5 var(--sans); padding: 13px 15px; border-radius: 12px; border: 1px solid #D7E0FA; background: #FFFFFF; color: var(--fg); width: 100%; }
+input::placeholder, textarea::placeholder { color: var(--dim); }
+input:focus, textarea:focus { outline: none; border-color: var(--cobalt); }
+textarea { min-height: 88px; resize: vertical; }
+form .btn { width: 100%; }
+.msg { font-size: 14px; color: var(--mute); }
+.apply-cta { display: grid; gap: 14px; max-width: 520px; }
+.btn.big { height: 60px; font-size: 18px; border-radius: 16px; }
+.apply-cta .mute { font-size: 14px; line-height: 1.6; }
+
+footer { color: var(--mute); font-size: 13px; border-top: 1px solid var(--line); }
+footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+.dock { display: none; }
+
+
+/* 히어로 윤동규 히스토리 웹툰
+   첫 화면은 제목 한 장 스크롤을 시작하면 제목이 물러나고 컷이 앞으로 나온다
+   뒤에는 지금 컷을 크게 흐린 빛을 깔아 컷마다 화면 공기가 바뀐다 */
+.toon { position: relative; height: calc(31 * 42vh + 180vh); background: #060B1E; color: #FFFFFF; }
+.toon-pin { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 58px); height: calc(100vh - 58px); overflow: hidden; display: grid; place-items: center; }
+.toon-amb { position: absolute; inset: -10%; width: 120%; height: 120%; object-fit: cover; filter: blur(48px) saturate(1.25); opacity: .38; transform: scale(1.1); transition: opacity .6s ease; pointer-events: none; }
+.toon-pin::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(6, 11, 30, 0) 30%, rgba(6, 11, 30, .85) 100%); pointer-events: none; }
+.toon-intro { position: absolute; inset: 0; z-index: 3; display: grid; place-content: center; justify-items: center; text-align: center; gap: 28px; padding: 0 24px; pointer-events: none; }
+.t-kicker { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: #C9D3F2; }
+.t-kicker span { font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--cobalt); color: #FFFFFF; }
+.toon-intro h1 { display: grid; gap: 4px; font-size: clamp(40px, 7vw, 92px); line-height: 1.12; letter-spacing: -0.045em; font-weight: 800; }
+.toon-intro h1 span { display: block; opacity: 0; transform: translateY(36px); animation: rise .9s cubic-bezier(.2, .9, .1, 1) forwards; }
+.toon-intro h1 span:nth-child(2) { animation-delay: .14s; color: var(--cobalt-light); }
+.t-kicker { opacity: 0; animation: rise .8s .05s cubic-bezier(.2, .9, .1, 1) forwards; }
+.t-cue { display: flex; flex-direction: column; align-items: center; gap: 12px; font-size: 14px; color: #8C97B8; opacity: 0; animation: rise .8s .5s ease forwards; }
+.t-cue i { width: 1px; height: 44px; background: linear-gradient(transparent, var(--cobalt-light)); animation: drip 1.8s ease-in-out infinite; transform-origin: top; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+@keyframes drip { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+.frame { position: relative; z-index: 2; width: min(calc(100vh - 190px), 680px, calc(100vw - 40px)); aspect-ratio: 1; border-radius: 20px; overflow: hidden; background: #FFFFFF; box-shadow: 0 40px 120px rgba(0, 0, 0, .55); opacity: 0; transform: scale(.86); }
+.frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; will-change: opacity, transform; }
+.toon-hud { position: absolute; z-index: 3; left: max(24px, env(safe-area-inset-left, 0px)); right: max(24px, env(safe-area-inset-right, 0px)); top: 22px; display: flex; justify-content: space-between; align-items: baseline; opacity: 0; }
+.hud-ch { font-size: 17px; font-weight: 700; }
+.hud-n { font-size: 13px; color: #8C97B8; font-variant-numeric: tabular-nums; }
+.toon-ticks { position: absolute; z-index: 3; left: 50%; bottom: 22px; transform: translateX(-50%); display: flex; gap: 4px; opacity: 0; }
+.toon-ticks i { width: 10px; height: 3px; border-radius: 2px; background: rgba(255, 255, 255, .18); transition: background .3s ease, width .3s ease; }
+.toon-ticks i.on { background: var(--cobalt-light); }
+.toon-ticks i.now { width: 22px; background: #FFFFFF; }
+@media (max-width: 900px) {
+  .toon { height: calc(31 * 36vh + 160vh); }
+  .toon-ticks i { width: 6px; }
+  .toon-ticks i.now { width: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .toon-intro h1 span, .t-kicker, .t-cue { animation: none; opacity: 1; transform: none; }
+  .t-cue i { animation: none; }
+}
+
+/* 업력 연표: 스크롤을 붙잡고 연도가 슬롯처럼 굴러간다 */
+.sec-head { display: grid; gap: 14px; margin-bottom: 48px; }
+.sec-head .no { font-size: 14px; font-weight: 700; color: var(--cobalt); }
+.sec-head h2 { font-size: clamp(30px, 4vw, 48px); line-height: 1.25; }
+.hist { position: relative; height: 520vh; border-top: 1px solid var(--line); }
+.hist-pin { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 58px); height: calc(100vh - 58px); overflow: hidden; }
+.hist-pin .wrap { height: 100%; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 48px; align-items: center; }
+.portrait { position: relative; height: min(78vh, 640px); display: grid; place-items: end center; }
+.portrait .disc { position: absolute; left: 50%; bottom: 0; width: 86%; aspect-ratio: 1; border-radius: 50%; background: var(--cobalt); transform: translateX(-50%) scale(var(--d, .6)); transform-origin: 50% 100%; }
+.portrait img { position: relative; height: 100%; width: auto; max-width: 100%; object-fit: contain; object-position: bottom; transform: translateY(var(--py, 0px)); filter: grayscale(var(--g, 1)); }
+.hist-copy { display: grid; gap: 28px; }
+.hist-copy .who { font-size: 15px; color: var(--mute); font-weight: 600; }
+.hist-copy .who b { color: var(--fg); font-size: 22px; margin-right: 8px; letter-spacing: -0.02em; }
+.year { display: flex; font-size: clamp(88px, 13vw, 168px); font-weight: 800; letter-spacing: -0.06em; line-height: 1; height: 1em; overflow: hidden; color: var(--cobalt); font-variant-numeric: tabular-nums; }
+.year .col { display: flex; flex-direction: column; transition: transform .7s cubic-bezier(.2, .9, .1, 1.08); }
+.year .col span { height: 1em; display: block; }
+.events { position: relative; min-height: 132px; }
+.ev { position: absolute; inset: 0 0 auto; display: grid; gap: 8px; opacity: 0; transform: translateY(24px); clip-path: inset(0 0 100% 0); transition: opacity .45s ease, transform .6s cubic-bezier(.2, .9, .1, 1), clip-path .6s cubic-bezier(.2, .9, .1, 1); }
+.ev.on { opacity: 1; transform: none; clip-path: inset(0 0 0 0); }
+.ev.gone { opacity: 0; transform: translateY(-18px); clip-path: inset(0 0 0 0); }
+.ev h3 { font-size: clamp(26px, 3vw, 38px); line-height: 1.3; }
+.ev p { color: var(--mute); }
+.track { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.track i { height: 4px; border-radius: 2px; background: var(--line); position: relative; overflow: hidden; }
+.track i::after { content: ""; position: absolute; inset: 0; background: var(--cobalt); transform: scaleX(var(--f, 0)); transform-origin: left; }
+.track-y { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; font-size: 13px; color: var(--dim); font-weight: 600; font-variant-numeric: tabular-nums; }
+.track-y span.on { color: var(--cobalt); }
+
+/* 업력 */
+.biz, .vids, .cases, .spec { border-top: 1px solid var(--line); }
+.biz > .wrap, .vids > .wrap, .cases > .wrap, .spec > .wrap { padding-block: 120px; }
+.corp { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.corp li { border: 1px solid var(--line); border-radius: 20px; padding: 28px; display: grid; gap: 14px; align-content: start; opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .8s cubic-bezier(.2, .9, .1, 1); }
+.corp.in li { opacity: 1; transform: none; }
+.corp.in li:nth-child(2) { transition-delay: .12s; }
+.corp.in li:nth-child(3) { transition-delay: .24s; }
+.corp.in li:nth-child(4) { transition-delay: .36s; }
+.corp .since { font-size: 13px; font-weight: 700; color: var(--cobalt); font-variant-numeric: tabular-nums; }
+.corp h3 { font-size: 24px; }
+.corp .num { white-space: nowrap; font-size: clamp(28px, 2.5vw, 38px); font-weight: 800; letter-spacing: -0.04em; color: var(--cobalt); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.corp .src { font-size: 13px; color: var(--mute); }
+.corp li.feat { background: var(--cobalt); border-color: var(--cobalt); color: #FFFFFF; }
+.corp li.feat .since, .corp li.feat .num { color: #FFFFFF; }
+.corp li.feat .src { color: #C9D6FF; }
+.slot-note { display: inline-block; font-size: 13px; font-weight: 600; color: var(--cobalt); border: 1px dashed #B9C8F3; border-radius: 8px; padding: 4px 10px; }
+
+/* 인터뷰 영상 */
+.vgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.vcard { display: grid; gap: 12px; text-decoration: none; color: inherit; }
+.vthumb { aspect-ratio: 16 / 9; border-radius: 16px; background: var(--tint); border: 1px dashed #B9C8F3; display: grid; place-items: center; position: relative; overflow: hidden; }
+.vthumb svg { width: 56px; height: 56px; transition: transform .25s ease; }
+.vcard:hover .vthumb svg { transform: scale(1.1); }
+.vcard b { font-size: 17px; }
+.vcard span { font-size: 14px; color: var(--mute); }
+
+/* 성과사례 */
+.cgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.case { border-radius: 20px; background: var(--tint); padding: 28px; display: grid; gap: 12px; min-height: 220px; align-content: start; }
+.case .who { font-size: 14px; font-weight: 700; color: var(--cobalt); }
+.case .bar { height: 14px; border-radius: 7px; background: #DCE5FB; }
+.case .bar.s { width: 60%; }
+
+.vgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.vthumb.has { border: 0; background: var(--fg); }
+.vthumb.has img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.vthumb.has svg { position: relative; }
+.vcard:hover .vthumb.has img { transform: scale(1.04); }
+.case { margin: 0; background: #FFFFFF; border: 1px solid var(--line); }
+.case-h { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.4; }
+.case img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); display: block; margin-top: 4px; }
+.src-note { margin-top: 16px; font-size: 13px; color: var(--mute); }
+
+.vfeat { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 32px; align-items: center; text-decoration: none; color: inherit; }
+.vfeat-t { display: grid; gap: 10px; }
+.vfeat-t b { font-size: clamp(22px, 2.4vw, 30px); line-height: 1.3; letter-spacing: -0.03em; }
+.vlabel { justify-self: start; font-size: 13px; font-weight: 700; padding: 4px 12px; border-radius: 999px; background: var(--tint); color: var(--cobalt); }
+.vgroup { margin: 64px 0 20px; font-size: 20px; }
+.vgrid.v4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.vgrid.v4 .vcard b { font-size: 15px; line-height: 1.45; }
+.vgrid.v4 .vthumb svg { width: 40px; height: 40px; }
+.vgrid.v3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 20px; }
+.vgrid.v3 .vcard b { font-size: 16px; line-height: 1.45; }
+@media (max-width: 900px) { .vfeat { grid-template-columns: minmax(0, 1fr); gap: 16px; } .vgrid.v4, .vgrid.v3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .vgroup { margin-top: 48px; } }
+
+
+/* 성과사례 큰 결과 넷 그리고 원본 캡처 벽 */
+.hls { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.hl { display: grid; grid-template-rows: auto 1fr; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: #FFFFFF; }
+.hl .shot { aspect-ratio: 4 / 3; background: var(--tint); }
+.hl .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.hl-t { padding: 18px 20px 22px; display: grid; gap: 6px; align-content: start; }
+.hl-t .who { font-size: 13px; font-weight: 700; color: var(--cobalt); }
+.hl-t b { font-size: clamp(24px, 2.2vw, 30px); letter-spacing: -0.035em; line-height: 1.2; }
+.hl-t p { font-size: 15px; color: var(--mute); line-height: 1.55; }
+.shot { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.wall-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 72px 0 20px; }
+.wall-head h3 { font-size: 22px; }
+.wall-head .mute { font-size: 14px; }
+.wall { columns: 4 240px; column-gap: 16px; }
+.w { break-inside: avoid; margin: 0 0 16px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: #FFFFFF; }
+.w img { width: 100%; height: auto; display: block; transition: transform .3s ease; }
+.w .shot:hover img { transform: scale(1.02); }
+.w figcaption { font-size: 13px; color: var(--mute); padding: 10px 14px; border-top: 1px solid var(--line); }
+.lb { position: fixed; inset: 0; z-index: 60; background: rgba(6, 11, 30, .86); display: grid; place-items: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity .2s ease; cursor: zoom-out; }
+.lb.on { opacity: 1; pointer-events: auto; }
+.lb img { max-width: min(920px, 100%); max-height: 88vh; border-radius: 12px; background: #FFFFFF; }
+
+/* 모집요강 핵심 넷 흐름 넷 그리고 대비 */
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.facts li { border-radius: 20px; background: var(--tint); padding: 24px 24px 26px; display: grid; gap: 6px; align-content: start; }
+.facts span { font-size: 14px; font-weight: 700; color: var(--cobalt); }
+.facts b { font-size: clamp(28px, 2.8vw, 38px); letter-spacing: -0.04em; line-height: 1.15; }
+.facts small { font-size: 14px; color: var(--mute); line-height: 1.5; }
+.flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 48px; counter-reset: none; }
+.flow li { position: relative; display: grid; gap: 4px; padding: 0 16px 0 0; }
+.flow li::before { content: ""; position: absolute; left: 34px; right: 0; top: 17px; height: 2px; background: var(--line); }
+.flow li:last-child::before { display: none; }
+.flow i { position: relative; z-index: 1; width: 34px; height: 34px; border-radius: 50%; background: var(--cobalt); color: #FFFFFF; font: 700 15px/34px var(--sans); text-align: center; font-style: normal; margin-bottom: 10px; }
+.flow b { font-size: 18px; }
+.flow span { font-size: 14px; color: var(--mute); }
+.fit2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; margin-top: 56px; }
+.fit2 > div { border-radius: 20px; padding: 28px 30px; }
+.fit2 h3 { font-size: 19px; margin-bottom: 14px; }
+.fit2 li { padding: 12px 0; border-top: 1px solid; font-size: 17px; }
+.no-go { background: #F4F5F8; }
+.no-go h3 { color: var(--mute); }
+.no-go li { border-color: #E3E6EE; color: var(--dim); text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.go { background: var(--cobalt); color: #FFFFFF; }
+.go li { border-color: rgba(255, 255, 255, .2); font-weight: 600; }
+.spec-end { margin-top: 40px; font-size: clamp(22px, 2.4vw, 28px); font-weight: 700; letter-spacing: -0.03em; }
+@media (max-width: 900px) {
+  .hls, .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 0; }
+  .flow li:nth-child(2)::before { display: none; }
+  .fit2 { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .hls { grid-template-columns: minmax(0, 1fr); }
+  .wall { columns: 2 140px; column-gap: 10px; }
+  .w { margin-bottom: 10px; }
+}
+
+/* 모집요강 */
+.spec-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+.spec dl { margin: 0; display: grid; }
+.spec dl div { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; padding-block: 18px; border-bottom: 1px solid var(--line); }
+.spec dl div:first-child { padding-top: 0; }
+.spec dt { font-size: 15px; color: var(--mute); font-weight: 600; }
+.spec dd { margin: 0; font-size: 19px; font-weight: 700; letter-spacing: -0.02em; }
+.spec dd small { display: block; font-size: 15px; font-weight: 500; color: var(--mute); letter-spacing: 0; }
+.spec .side { display: grid; gap: 40px; }
+.bridge { padding-block: 120px 40px; }
+.spec .fit { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+.bridge h2 { font-size: clamp(34px, 5vw, 64px); line-height: 1.2; }
+
+@media (max-width: 900px) {
+  .story .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 58px); z-index: 20; background: var(--bg); border-bottom: 1px solid var(--line); margin-inline: calc(-1 * max(24px, env(safe-area-inset-left, 0px))); padding-inline: max(24px, env(safe-area-inset-left, 0px)); }
+  .stage { position: static; height: auto; padding-block: 8px; grid-template-columns: 120px minmax(0, 1fr); justify-items: start; align-items: center; gap: 12px; }
+  .stage svg { max-width: 120px; }
+  .status { text-align: left; min-height: 0; }
+  .ch { min-height: 0; padding-block: 72px; }
+  .hist { height: 460vh; }
+  .hist-pin .wrap { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; gap: 16px; align-items: end; padding-block: 16px 28px; }
+  .portrait { height: 100%; min-height: 0; }
+  .hist-copy { gap: 16px; }
+  .year { font-size: clamp(64px, 18vw, 110px); }
+  .events { min-height: 108px; }
+  .corp { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vgrid, .cgrid, .spec-grid { grid-template-columns: minmax(0, 1fr); }
+  .biz > .wrap, .vids > .wrap, .cases > .wrap, .spec > .wrap { padding-block: 72px; }
+}
+@media (max-width: 560px) {
+  .wrap { padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+  .rail { margin-inline: calc(-1 * max(20px, env(safe-area-inset-left, 0px))); padding-inline: max(20px, env(safe-area-inset-left, 0px)); }
+  .open .wrap { padding-block: 52px 56px; }
+  .fit { grid-template-columns: minmax(0, 1fr); }
+  form { padding: 22px; }
+  .dock { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; padding: 10px max(20px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-left, 0px)); background: var(--bg); border-top: 1px solid var(--line); }
+  .dock .btn { width: 100%; }
+  footer .wrap { padding-bottom: 96px; }
+}
+</style>
+</head>
+<body>
+
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="윤대표의 이커머스 사장학교 처음으로"><img src="logo.webp" alt="" width="36" height="28">윤대표의 이커머스 사장학교</a>
+    <a class="link" href="#apply">참여 신청</a>
+  </div>
+</header>
+
+<div class="flash" id="flash" aria-hidden="true"></div>
+
+<main id="top">
+
+
+
+  <section class="toon" id="story" aria-label="윤동규 히스토리 웹툰">
+    <div class="toon-pin">
+      <img class="toon-amb" id="toonAmb" src="toon/t01.webp" alt="" aria-hidden="true">
+      <div class="toon-intro" id="toonIntro">
+        <p class="t-kicker"><span>실화</span>윤대표의 이커머스 사장학교</p>
+        <h1><span>당신이 보는 것은</span><span>누군가의 시작입니다</span></h1>
+        <p class="t-cue"><i aria-hidden="true"></i>내려서 윤대표 이야기 보기</p>
+      </div>
+      <div class="frame" id="frame"><img src="toon/t01.webp" alt="윤동규 히스토리 웹툰 1컷" decoding="async"><img src="toon/t02.webp" alt="윤동규 히스토리 웹툰 2컷" decoding="async"><img src="toon/t03.webp" alt="윤동규 히스토리 웹툰 3컷" decoding="async"><img src="toon/t04.webp" alt="윤동규 히스토리 웹툰 4컷" decoding="async"><img src="toon/t05.webp" alt="윤동규 히스토리 웹툰 5컷" decoding="async"><img src="toon/t06.webp" alt="윤동규 히스토리 웹툰 6컷" decoding="async"><img src="toon/t07.webp" alt="윤동규 히스토리 웹툰 7컷" decoding="async"><img src="toon/t08.webp" alt="윤동규 히스토리 웹툰 8컷" decoding="async"><img src="toon/t09.webp" alt="윤동규 히스토리 웹툰 9컷" decoding="async"><img src="toon/t10.webp" alt="윤동규 히스토리 웹툰 10컷" decoding="async"><img src="toon/t11.webp" alt="윤동규 히스토리 웹툰 11컷" decoding="async"><img src="toon/t12.webp" alt="윤동규 히스토리 웹툰 12컷" decoding="async"><img src="toon/t13.webp" alt="윤동규 히스토리 웹툰 13컷" decoding="async"><img src="toon/t14.webp" alt="윤동규 히스토리 웹툰 14컷" decoding="async"><img src="toon/t15.webp" alt="윤동규 히스토리 웹툰 15컷" decoding="async"><img src="toon/t16.webp" alt="윤동규 히스토리 웹툰 16컷" decoding="async"><img src="toon/t17.webp" alt="윤동규 히스토리 웹툰 17컷" decoding="async"><img src="toon/t18.webp" alt="윤동규 히스토리 웹툰 18컷" decoding="async"><img src="toon/t19.webp" alt="윤동규 히스토리 웹툰 19컷" decoding="async"><img src="toon/t20.webp" alt="윤동규 히스토리 웹툰 20컷" decoding="async"><img src="toon/t21.webp" alt="윤동규 히스토리 웹툰 21컷" decoding="async"><img src="toon/t22.webp" alt="윤동규 히스토리 웹툰 22컷" decoding="async"><img src="toon/t23.webp" alt="윤동규 히스토리 웹툰 23컷" decoding="async"><img src="toon/t24.webp" alt="윤동규 히스토리 웹툰 24컷" decoding="async"><img src="toon/t25.webp" alt="윤동규 히스토리 웹툰 25컷" decoding="async"><img src="toon/t26.webp" alt="윤동규 히스토리 웹툰 26컷" decoding="async"><img src="toon/t27.webp" alt="윤동규 히스토리 웹툰 27컷" decoding="async"><img src="toon/t28.webp" alt="윤동규 히스토리 웹툰 28컷" decoding="async"><img src="toon/t29.webp" alt="윤동규 히스토리 웹툰 29컷" decoding="async"><img src="toon/t30.webp" alt="윤동규 히스토리 웹툰 30컷" decoding="async"><img src="toon/t31.webp" alt="윤동규 히스토리 웹툰 31컷" decoding="async"></div>
+      <div class="toon-hud" aria-hidden="true">
+        <span class="hud-ch" id="toonCh">대학 시절</span>
+        <span class="hud-n" id="toonCount">01 / 31</span>
+      </div>
+      <div class="toon-ticks" id="toonTicks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+  </section>
+
+  <section class="hist" id="history" aria-label="윤동규 업력 연표">
+    <div class="hist-pin">
+      <div class="wrap">
+        <div class="portrait" id="portrait"><span class="disc" aria-hidden="true"></span><img src="yoon.webp" alt="메이크패밀리 대표 윤동규" width="900" height="1180"></div>
+        <div class="hist-copy">
+          <p class="who"><b>윤동규</b>메이크패밀리 대표</p>
+          <div class="year" id="year" aria-live="polite"><span class="col"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span><span class="col"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span><span class="col"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span><span class="col"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></div>
+          <div class="events" id="events">
+            <div class="ev"><h3>온라인 사업 시작</h3><p>2018년 7월 7일 시작<br>그해 10월 매출 1억 2000만원</p></div>
+            <div class="ev"><h3>(주)메이크프렌즈 대표</h3><p>건강 관리 측정 용품 홈케어 뷰티기기 건강 푸드 스토어</p></div>
+            <div class="ev"><h3>(주)데일리앤그릭</h3><p>공동대표이사 그릭요거트 광명본점 청라공장<br>그해 온라인 매출 40억</p></div>
+            <div class="ev"><h3>(주)메이크패밀리 대표</h3><p>셀러가 운영하는 대행사</p></div>
+            <div class="ev"><h3>9년차 사업가<br>3개 법인 현업 대표</h3><p>지금도 직접 팔고 있습니다</p></div>
+          </div>
+          <div class="track" id="track" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="track-y" id="trackY" aria-hidden="true"><span>2018</span><span>2019</span><span>2020</span><span>2021</span><span>지금</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="biz" id="career">
+    <div class="wrap">
+      <div class="sec-head"><span class="no">업력</span><h2>말이 아니라<br>회사로 증명합니다</h2></div>
+      <ul class="corp" id="corp">
+        <li class="feat"><span class="since">2019년부터</span><h3>메이크프렌즈</h3><p class="num"><span data-count="27">0</span>억~<span data-count="41">0</span>억</p><p class="src">2021~2023년 연매출<br>(주)메이크프렌즈 원장 기준</p></li>
+        <li><span class="since">교육과 대행</span><h3>메이크패밀리</h3><p>셀러가 운영하는 대행사<br>유튜브 채널 메이크패밀리 운영</p></li>
+        <li><span class="since">AI 교육</span><h3>AI 사장학교</h3><p>사장님 일을 맡길 AI 직원<br>직접 만드는 학교</p></li>
+        <li><span class="since">인플루언서 MCN</span><h3>뷰티해</h3><p>인플루언서를 뽑아서<br>콘텐츠 기획부터 광고 연결까지 키웁니다</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="vids" id="videos">
+    <div class="wrap">
+      <div class="sec-head"><span class="no">인터뷰</span><h2>영상으로 직접 확인하세요</h2></div>
+      <a class="vfeat" href="https://www.youtube.com/watch?v=Ey6hz-1pDC8" target="_blank" rel="noopener"><div class="vthumb has"><img src="yt/Ey6hz-1pDC8.webp" alt="첫 이커머스 사장학교 오프라인 수업영상" loading="lazy"><svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="28" fill="#0A3FCC"/><path d="M23 18 L39 28 L23 38 Z" fill="#FFFFFF"/></svg></div><div class="vfeat-t"><span class="vlabel">2시간 풀버전</span><b>첫 이커머스 사장학교<br>오프라인 수업영상</b><span class="mute">윤대표가 직접 진행한 첫 오프라인 수업 전체 영상</span></div></a>
+      <h3 class="vgroup">윤대표가 출연한 인터뷰</h3>
+      <div class="vgrid v4">
+        <a class="vcard" href="https://www.youtube.com/watch?v=KdGkVIXBk0c" target="_blank" rel="noopener"><div class="vthumb has"><img src="yt/KdGkVIXBk0c.webp" alt="가난한 20대 30대를 보내며 알게된 가난의 진짜 이유" loading="lazy"><svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="28" fill="#0A3FCC"/><path d="M23 18 L39 28 L23 38 Z" fill="#FFFFFF"/></svg></div><b>가난한 20대 30대를 보내며 알게된 가난의 진짜 이유</b><span>쩐문가</span></a>
+        <a class="vcard" href="https://www.youtube.com/watch?v=Ty-kpQbzEEk" target="_blank" rel="noopener"><div class="vthumb has"><img src="yt/Ty-kpQbzEEk.webp" alt="가난한 사람 곁에는 꼭 있는 인간 유형" loading="lazy"><svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="28" fill="#0A3FCC"/><path d="M23 18 L39 28 L23 38 Z" fill="#FFFFFF"/></svg></div><b>가난한 사람 곁에는 꼭 있는 인간 유형</b><span>쩐문가</span></a>
+        <a class="vcard" href="https://www.youtube.com/watch?v=RIzHqO9N8hQ" target="_blank" rel="noopener"><div class="vthumb has"><img src="yt/RIzHqO9N8hQ.webp" alt="‘이 1가지가 부를 결정한다’ 부자 될 확률을 높이는 방법" loading="lazy"><svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="28" fill="#0A3FCC"/><path d="M23 18 L39 28 L23 38 Z" fill="#FFFFFF"/></svg></div><b>‘이 1가지가 부를 결정한다’ 부자 될 확률을 높이는 방법</b><span>사사스 사람 사는 스토리</span></a>
+        <a class="vcard" href="https://www.youtube.com/watch?v=Te4JkMWL3NQ" target="_blank" rel="noopener"><div class="vthumb has"><img src="yt/Te4JkMWL3NQ.webp" alt="“운과 복 다 뺏깁니다” 이런 사람은 절대 가까이 두지 마세요" loading="lazy"><svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="28" fill="#0A3FCC"/><path d="M23 18 L39 28 L23 38 Z" fill="#FFFFFF"/></svg></div><b>“운과 복 다 뺏깁니다” 이런 사람은 절대 가까이 두지 마세요</b><span>사사스 사람 사는 스토리</span></a>
+      </div>
+      <h3 class="vgroup">변화사례</h3>
+      <div class="vgrid v3">
+        <a class="vcard" href="https://www.youtube.com/watch?v=sSXrW1xx4d0" target="_blank" rel="noopener"><div class="vthumb has"><img src="yt/sSXrW1xx4d0.webp" alt="온라인 사업 성공할 생각 있으면 이거 먼저 보세요" loading="lazy"><svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="28" fill="#0A3FCC"/><path d="M23 18 L39 28 L23 38 Z" fill="#FFFFFF"/></svg></div><b>온라인 사업 성공할 생각 있으면 이거 먼저 보세요</b><span>메이크패밀리 유튜브</span></a>
+        <a class="vcard" href="https://www.youtube.com/watch?v=Rrc068qAsgw" target="_blank" rel="noopener"><div class="vthumb has"><img src="yt/Rrc068qAsgw.webp" alt="온라인사업할 때 앞으로 ‘이 곳’을 알아야 살아남습니다 (찐 블루오션임)" loading="lazy"><svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="28" fill="#0A3FCC"/><path d="M23 18 L39 28 L23 38 Z" fill="#FFFFFF"/></svg></div><b>온라인사업할 때 앞으로 ‘이 곳’을 알아야 살아남습니다 (찐 블루오션임)</b><span>메이크패밀리 유튜브</span></a>
+        <a class="vcard" href="https://www.youtube.com/watch?v=Ys108K2PhEs" target="_blank" rel="noopener"><div class="vthumb has"><img src="yt/Ys108K2PhEs.webp" alt="유튜브 보고 0원으로 창업한 후 한달에 220만원 버는 대학생" loading="lazy"><svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="28" fill="#0A3FCC"/><path d="M23 18 L39 28 L23 38 Z" fill="#FFFFFF"/></svg></div><b>유튜브 보고 0원으로 창업한 후 한달에 220만원 버는 대학생</b><span>메이크패밀리 유튜브</span></a>
+        <a class="vcard" href="https://www.youtube.com/watch?v=XGwsvIMTGvU" target="_blank" rel="noopener"><div class="vthumb has"><img src="yt/XGwsvIMTGvU.webp" alt="월 천만원 벌던 스마트스토어 그만두고 이거로 3일만에 300만원 벌어요 (쿠팡 구매대행 아님)" loading="lazy"><svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="28" fill="#0A3FCC"/><path d="M23 18 L39 28 L23 38 Z" fill="#FFFFFF"/></svg></div><b>월 천만원 벌던 스마트스토어 그만두고 이거로 3일만에 300만원 벌어요 (쿠팡 구매대행 아님)</b><span>메이크패밀리 유튜브</span></a>
+        <a class="vcard" href="https://www.youtube.com/watch?v=VlLxcPaimr4" target="_blank" rel="noopener"><div class="vthumb has"><img src="yt/VlLxcPaimr4.webp" alt="육아 휴직한 직장인이 하루 10분씩 짬내서 돈 버는 방법" loading="lazy"><svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="28" fill="#0A3FCC"/><path d="M23 18 L39 28 L23 38 Z" fill="#FFFFFF"/></svg></div><b>육아 휴직한 직장인이 하루 10분씩 짬내서 돈 버는 방법</b><span>메이크패밀리 유튜브</span></a>
+        <a class="vcard" href="https://www.youtube.com/watch?v=MUQ4rmunbWc" target="_blank" rel="noopener"><div class="vthumb has"><img src="yt/MUQ4rmunbWc.webp" alt="쿠팡 판매의 찐현실 월 1억 벌어도 90% 포기하는 진짜 이유" loading="lazy"><svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="28" fill="#0A3FCC"/><path d="M23 18 L39 28 L23 38 Z" fill="#FFFFFF"/></svg></div><b>쿠팡 판매의 찐현실 월 1억 벌어도 90% 포기하는 진짜 이유</b><span>메이크패밀리 유튜브</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cases" id="cases">
+    <div class="wrap">
+      <div class="sec-head"><span class="no">성과사례</span><h2>먼저 해본 사람들은<br>이렇게 달라졌습니다</h2></div>
+      <ul class="hls"><li class="hl"><button class="shot" data-full="cases/c01.webp" aria-label="순익 약 1,100만원 캡처 크게 보기"><img src="cases/c01.webp" alt="순익 약 1,100만원 캡처" loading="lazy"></button><div class="hl-t"><span class="who">초보사업자 2024년 6월</span><b>순익 약 1,100만원</b><p>6월 중간 집계 2,800매출 마진율 약 40%</p></div></li><li class="hl"><button class="shot" data-full="cases/ss_03_first_order.webp" aria-label="첫 주문 캡처 크게 보기"><img src="cases/ss_03_first_order.webp" alt="첫 주문 캡처" loading="lazy"></button><div class="hl-t"><span class="who">스스학개론 수강생</span><b>첫 주문</b><p>“대표님 주문이 들어왔어요”</p></div></li><li class="hl"><button class="shot" data-full="cases/ss_04_rank2.webp" aria-label="검색 2등 캡처 크게 보기"><img src="cases/ss_04_rank2.webp" alt="검색 2등 캡처" loading="lazy"></button><div class="hl-t"><span class="who">스스학개론 수강생</span><b>검색 2등</b><p>“조회수 400 밖에 안되지만 2등에 올라왔습니다”</p></div></li><li class="hl"><button class="shot" data-full="cases/ss_06_restock.webp" aria-label="재생산 확정 캡처 크게 보기"><img src="cases/ss_06_restock.webp" alt="재생산 확정 캡처" loading="lazy"></button><div class="hl-t"><span class="who">스스학개론 수강생</span><b>재생산 확정</b><p>“주문 엄청 들어오는것같은데 재고 있어요”</p></div></li></ul>
+      <div class="wall-head"><h3>카톡방과 후기에 올라온 그대로</h3><span class="mute">눌러서 크게 볼 수 있습니다</span></div>
+      <div class="wall"><figure class="w"><button class="shot" data-full="cases/ss_01_direct_review.webp" aria-label="스스학개론 수강생 후기 크게 보기"><img src="cases/ss_01_direct_review.webp" alt="스스학개론 수강생 후기 캡처" loading="lazy"></button><figcaption>스스학개론 수강생</figcaption></figure><figure class="w"><button class="shot" data-full="cases/c19.webp" aria-label="1:1 컨설팅 후기 크게 보기"><img src="cases/c19.webp" alt="1:1 컨설팅 후기 캡처" loading="lazy"></button><figcaption>1:1 컨설팅</figcaption></figure><figure class="w"><button class="shot" data-full="cases/ss_05_rank58.webp" aria-label="스스학개론 수강생 후기 크게 보기"><img src="cases/ss_05_rank58.webp" alt="스스학개론 수강생 후기 캡처" loading="lazy"></button><figcaption>스스학개론 수강생</figcaption></figure><figure class="w"><button class="shot" data-full="cases/ss_08_first_blog.webp" aria-label="스스학개론 수강생 후기 크게 보기"><img src="cases/ss_08_first_blog.webp" alt="스스학개론 수강생 후기 캡처" loading="lazy"></button><figcaption>스스학개론 수강생</figcaption></figure><figure class="w"><button class="shot" data-full="cases/c10.webp" aria-label="평생회원 후기 크게 보기"><img src="cases/c10.webp" alt="평생회원 후기 캡처" loading="lazy"></button><figcaption>평생회원</figcaption></figure><figure class="w"><button class="shot" data-full="cases/ss_02_content_action.webp" aria-label="스스학개론 수강생 후기 크게 보기"><img src="cases/ss_02_content_action.webp" alt="스스학개론 수강생 후기 캡처" loading="lazy"></button><figcaption>스스학개론 수강생</figcaption></figure><figure class="w"><button class="shot" data-full="cases/m13.webp" aria-label="컨설팅 구매 후기 후기 크게 보기"><img src="cases/m13.webp" alt="컨설팅 구매 후기 후기 캡처" loading="lazy"></button><figcaption>컨설팅 구매 후기</figcaption></figure><figure class="w"><button class="shot" data-full="cases/ss_07_seminar.webp" aria-label="오프라인 세미나 후기 크게 보기"><img src="cases/ss_07_seminar.webp" alt="오프라인 세미나 후기 캡처" loading="lazy"></button><figcaption>오프라인 세미나</figcaption></figure><figure class="w"><button class="shot" data-full="cases/m06.webp" aria-label="평생회원 후기 크게 보기"><img src="cases/m06.webp" alt="평생회원 후기 캡처" loading="lazy"></button><figcaption>평생회원</figcaption></figure><figure class="w"><button class="shot" data-full="cases/m14.webp" aria-label="컨설팅 구매 후기 후기 크게 보기"><img src="cases/m14.webp" alt="컨설팅 구매 후기 후기 캡처" loading="lazy"></button><figcaption>컨설팅 구매 후기</figcaption></figure><figure class="w"><button class="shot" data-full="cases/m02.webp" aria-label="평생회원 후기 크게 보기"><img src="cases/m02.webp" alt="평생회원 후기 캡처" loading="lazy"></button><figcaption>평생회원</figcaption></figure><figure class="w"><button class="shot" data-full="cases/m08.webp" aria-label="평생회원 후기 크게 보기"><img src="cases/m08.webp" alt="평생회원 후기 캡처" loading="lazy"></button><figcaption>평생회원</figcaption></figure><figure class="w"><button class="shot" data-full="cases/m15.webp" aria-label="컨설팅 구매 후기 후기 크게 보기"><img src="cases/m15.webp" alt="컨설팅 구매 후기 후기 캡처" loading="lazy"></button><figcaption>컨설팅 구매 후기</figcaption></figure></div>
+      <p class="src-note">수강생과 회원이 직접 남긴 원본 캡처입니다 개인정보는 가렸습니다</p>
+    </div>
+  </section>
+
+  <section class="spec" id="recruit">
+    <div class="wrap">
+      <div class="sec-head"><span class="no">모집요강</span><h2>‘돈을 벌고 싶은 사람’이 아니라<br>‘끝까지 해보는 사람’을 모집합니다</h2></div>
+      <ul class="facts">
+        <li><span>비용</span><b>무료</b><small>윤대표가 직접 경험한 방법을 전수합니다</small></li>
+        <li><span>인원</span><b>최대 10명</b><small>매 회차</small></li>
+        <li><span>선발</span><b>면접</b><small>선착순이 아닙니다</small></li>
+        <li><span>운영</span><b>5명씩 한 조</b><small>2주마다 조모임과 윤대표 피드백</small></li>
+      </ul>
+      <ol class="flow" aria-label="참여 흐름">
+        <li><i>1</i><b>참여 신청</b><span>누구나 지원 가능</span></li>
+        <li><i>2</i><b>면접 선발</b><span>끝까지 할 사람만</span></li>
+        <li><i>3</i><b>조 편성</b><span>약 5명씩</span></li>
+        <li><i>4</i><b>2주마다 피드백</b><span>조원과 윤대표</span></li>
+      </ol>
+      <div class="fit2">
+        <div class="no-go">
+          <h3>이런 사람은 안 됩니다</h3>
+          <ul>
+            <li>몰래 하고 싶은 사람</li>
+            <li>결과만 원하는 사람</li>
+            <li>말보다 생각이 많은 사람</li>
+            <li>“상황이 안 좋아서요”를 자주 쓰는 사람</li>
+          </ul>
+        </div>
+        <div class="go">
+          <h3>대신 이런 사람은 남습니다</h3>
+          <ul>
+            <li>완벽하지 않아도 실행하는 사람</li>
+            <li>카메라 앞에서 도망치지 않는 사람</li>
+            <li>돈보다 먼저 ‘변화’를 감당할 수 있는 사람</li>
+          </ul>
+        </div>
+      </div>
+      <p class="spec-end">이 학교는 상황을 고려하지 않습니다</p>
+    </div>
+  </section>
+
+  <section class="open">
+    <div class="wrap">
+      <p class="project">여기까지 봤다면</p>
+      <h2 class="q">지금도 이 페이지를 보고 있다면<br>당신은 둘 중 하나입니다</h2>
+      <ol class="pick">
+        <li class="out"><span>1</span><span>아직도 “언젠가”를 말하는 사람</span></li>
+        <li class="in"><span>2</span><span>아니면 이번엔 진짜 해보려는 사람</span></li>
+      </ol>
+      <p class="why">이 학교는 <span class="mute">1번을 쫓아내기 위해</span> 만들어졌습니다</p>
+    </div>
+  </section>
+
+  <section class="bridge"><div class="wrap"><div class="sec-head"><span class="no">커리큘럼</span><h2>제품 하나로<br>10년 먹고사는 방법</h2></div></div></section>
+
+  <div class="story">
+    <div class="wrap">
+      <div class="rail">
+        <div class="stage">
+          <svg id="egg" viewBox="-160 -180 320 360" role="img" aria-label="스크롤을 내릴수록 금이 가다가 4단계에서 깨지는 알">
+            <defs>
+              <radialGradient id="shell" cx=".36" cy=".3" r=".85" fx=".32" fy=".22">
+                <stop offset="0" stop-color="#5C86FF"/>
+                <stop offset=".45" stop-color="#0A3FCC"/>
+                <stop offset="1" stop-color="#041F6E"/>
+              </radialGradient>
+              <radialGradient id="core"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#E9EFFF"/><stop offset="1" stop-color="#5C86FF" stop-opacity="0"/></radialGradient>
+              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              <clipPath id="eggClip"><path d="M0 -130 C54 -130 92 -32 92 30 C92 90 52 128 0 128 C-52 128 -92 90 -92 30 C-92 -32 -54 -130 0 -130 Z"/></clipPath>
+              <clipPath id="topClip"><polygon points="-110,-150 110,-150 110,-8 95,-8 72,4 52,-14 32,0 12,-18 -8,2 -30,-16 -50,4 -70,-14 -95,-2 -110,-2"/></clipPath>
+              <clipPath id="botClip"><polygon points="-110,-2 -95,-2 -70,-14 -50,4 -30,-16 -8,2 12,-18 32,0 52,-14 72,4 95,-8 110,-8 110,150 -110,150"/></clipPath>
+              <g id="body">
+                <path d="M0 -130 C54 -130 92 -32 92 30 C92 90 52 128 0 128 C-52 128 -92 90 -92 30 C-92 -32 -54 -130 0 -130 Z" fill="url(#shell)"/>
+                <ellipse cx="-34" cy="-62" rx="16" ry="30" transform="rotate(24 -34 -62)" fill="#FFFFFF" opacity=".28"/>
+                <ellipse cx="-44" cy="-20" rx="4" ry="7" transform="rotate(24 -44 -20)" fill="#FFFFFF" opacity=".22"/>
+                <circle cx="38" cy="-40" r="3.2" fill="#062A8C" opacity=".55"/>
+                <circle cx="22" cy="56" r="4" fill="#062A8C" opacity=".45"/>
+                <circle cx="-30" cy="78" r="2.6" fill="#062A8C" opacity=".45"/>
+                <circle cx="56" cy="30" r="2.2" fill="#062A8C" opacity=".5"/>
+              </g>
+            </defs>
+
+            <ellipse id="floor" cx="0" cy="146" rx="78" ry="10" fill="#0A1638" opacity=".1"/>
+            <g id="cam">
+              <g id="rays" opacity="0"></g>
+              <circle id="ring" cx="0" cy="-4" r="40" fill="none" stroke="#0A3FCC" stroke-width="2" opacity="0"/>
+              <g id="wob">
+                <g id="orb" opacity="0">
+                  <circle cx="0" cy="-6" r="74" fill="url(#core)"/>
+                </g>
+                <g id="chick" opacity="0">
+                  <g id="chickBody">
+                    <g id="wingL"><ellipse cx="-44" cy="6" rx="12" ry="20" transform="rotate(30 -44 6)" fill="#FFFFFF" stroke="#0A3FCC" stroke-width="3"/></g>
+                    <g id="wingR"><ellipse cx="44" cy="6" rx="12" ry="20" transform="rotate(-30 44 6)" fill="#FFFFFF" stroke="#0A3FCC" stroke-width="3"/></g>
+                    <ellipse cx="0" cy="0" rx="46" ry="50" fill="#FFFFFF" stroke="#0A3FCC" stroke-width="3"/>
+                    <path d="M-6 -49 C-8 -62 2 -66 4 -58 C6 -66 14 -62 10 -52" fill="none" stroke="#0A3FCC" stroke-width="3" stroke-linecap="round"/>
+                    <g id="eyes"><circle cx="-15" cy="-12" r="5.5" fill="#0A1638"/><circle cx="15" cy="-12" r="5.5" fill="#0A1638"/><circle cx="-13" cy="-14" r="1.6" fill="#FFFFFF"/><circle cx="17" cy="-14" r="1.6" fill="#FFFFFF"/></g>
+                    <ellipse cx="-26" cy="2" rx="6" ry="3.5" fill="#5C86FF" opacity=".35"/>
+                    <ellipse cx="26" cy="2" rx="6" ry="3.5" fill="#5C86FF" opacity=".35"/>
+                    <path d="M-8 -2 L8 -2 L0 8 Z" fill="#5C86FF" stroke="#0A3FCC" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M-6 18 L6 18 L4 25 L-4 25 Z" fill="#0A3FCC"/>
+                    <path d="M-4 25 L4 25 L8 46 L0 54 L-8 46 Z" fill="#0A3FCC"/>
+                  </g>
+                </g>
+                <g id="whole"><use href="#body"/></g>
+                <g id="halves" opacity="0">
+                  <g clip-path="url(#botClip)"><use href="#body"/></g>
+                  <g id="eggTop"><g clip-path="url(#topClip)"><use href="#body"/></g></g>
+                </g>
+                <g id="cracks" clip-path="url(#eggClip)" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" filter="url(#glow)">
+                  <path class="ck" pathLength="1" d="M-8 2 L-30 -16 L-50 4 L-70 -14 L-95 -2"/>
+                  <path class="ck" pathLength="1" d="M-8 2 L12 -18 L32 0 L52 -14 L72 4 L95 -8"/>
+                  <path class="br" pathLength="1" d="M-30 -16 L-38 -40 L-30 -56 L-36 -70"/>
+                  <path class="br" pathLength="1" d="M12 -18 L20 -42 L10 -62"/>
+                  <path class="br" pathLength="1" d="M52 -14 L60 10 L72 28"/>
+                  <path class="br" pathLength="1" d="M-50 4 L-56 26 L-44 42 L-50 58"/>
+                </g>
+              </g>
+              <g id="frags"></g>
+            </g>
+          </svg>
+          <div class="status" aria-live="polite"><b id="st-b">아직 알</b><span id="st-s">실행하면 깨어납니다</span></div>
+        </div>
+      </div>
+
+      <div class="chapters">
+        <section class="ch" data-b="아직 알" data-s="실행하면 깨어납니다">
+          <span class="no">처음</span>
+          <h2>실행 하지 않으면 끝난다</h2>
+          <p class="big co">대신 살아 남으면 돈이 된다</p>
+        </section>
+
+        <section class="ch" data-b="구조 안으로" data-s="도망칠 곳이 없습니다">
+          <span class="no">규칙</span>
+          <h2>이건 강의가 아닙니다</h2>
+          <ul class="strike">
+            <li>알려주지 않습니다</li>
+            <li>동기부여 하지 않습니다</li>
+            <li>성공사례 들려주지 않습니다</li>
+          </ul>
+          <p class="big">대신 도망칠 수 없는 구조 안에<br>당신을 넣습니다</p>
+        </section>
+
+        <section class="ch" data-b="이커머스 사장학교" data-s="교집합 찾는 중">
+          <span class="no">배우는 것</span>
+          <h2>좋아하는 제품을<br>팔리는 제품으로</h2>
+          <ul class="three">
+            <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="11" fill="none" stroke="#0A3FCC" stroke-width="1.5"/></svg>내가 좋아하는 제품</li>
+            <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="10" cy="14" r="8" fill="none" stroke="#0A3FCC" stroke-width="1.5"/><circle cx="18" cy="14" r="8" fill="none" stroke="#0A3FCC" stroke-width="1.5"/></svg>타인도 좋아하는 제품</li>
+            <li><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="10" cy="11" r="7.5" fill="none" stroke="#0A3FCC" stroke-width="1.4"/><circle cx="18" cy="11" r="7.5" fill="none" stroke="#0A3FCC" stroke-width="1.4"/><circle cx="14" cy="18" r="7.5" fill="none" stroke="#0A3FCC" stroke-width="1.4"/><circle cx="14" cy="13.6" r="2.6" fill="#0A3FCC"/></svg>실제로 팔리는 제품</li>
+          </ul>
+          <p>이 세 가지의 교집합을 가장 짧은 시간에 찾는 법을 배웁니다</p>
+        </section>
+
+        <section class="ch" id="how" data-key="s1" data-b="1단계 찾기" data-s="첫 금이 갑니다">
+          <span class="no">1단계</span>
+          <h2>이미 팔리고 있는 것을 찾아라</h2>
+          <div class="rules"><span>아이디어 금지</span><span>감정 금지</span></div>
+          <ul class="items">
+            <li>해외 인플루언서 콘텐츠 분석 <span class="mute">100개 리스트 제공</span></li>
+            <li>공감 댓글이 많은 제품만 추적</li>
+            <li>샘플 주문</li>
+          </ul>
+          <p class="big">돈이 흐른 흔적만 쫓습니다</p>
+        </section>
+
+        <section class="ch" data-b="2단계 통과" data-s="금이 번집니다">
+          <span class="no">2단계</span>
+          <h2>나 자신을 통과하라</h2>
+          <p>당신은 무엇을 잘하는 사람이 아니라<br>무엇을 끝까지 못하는 사람인지부터 봅니다</p>
+          <ul class="items">
+            <li>AI 분석기 제공</li>
+            <li>자기 분석과 목표 인식</li>
+            <li>카메라 앞에서 선언</li>
+          </ul>
+          <div class="vow">나는 ○개월 안에 ○○를 하겠다<br>못하면 변명하지 않겠다<small>예시 문구</small></div>
+          <p class="big">이 말을 못 하면<br>여기까지입니다</p>
+          <div class="gate"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="9" width="12" height="9" rx="1.5" fill="#0A3FCC"/><path d="M6.5 9V6.5a3.5 3.5 0 0 1 7 0V9" fill="none" stroke="#0A3FCC" stroke-width="1.6"/></svg><span>미션 2를 통과하지 못하면 미션 3으로 넘어가지 못합니다</span></div>
+        </section>
+
+        <section class="ch" data-b="3단계 첫 돈" data-s="안에서 빛이 샙니다">
+          <span class="no">3단계</span>
+          <h2>첫 돈을 만들어라</h2>
+          <p class="big">금액은 중요하지 않습니다<br>전환이 중요합니다</p>
+          <ul class="items">
+            <li>제휴 공동구매 소규모 펀딩</li>
+            <li>첫 수익 구조 설계</li>
+            <li>실행 과정 영상 제출</li>
+          </ul>
+          <p class="mute">펀딩과 예약판매의 모든 것<br>팔리는 구조 설계 방법을 알려드립니다</p>
+          <p>모든 과정에 대한 이론과 실무 팁은 전부 알려 드립니다</p>
+          <p class="big">무기가 중요한 게 아니라<br>주먹이라도 휘두르는 행동이 중요합니다</p>
+        </section>
+
+        <section class="ch" data-key="s4" data-b="4단계 구조" data-s="깨고 나왔습니다">
+          <span class="no">4단계</span>
+          <h2>구조로 만든다</h2>
+          <p>운이 아니라 반복 가능한 시스템으로 바꿉니다</p>
+          <ul class="items">
+            <li>브랜드</li>
+            <li>콘텐츠 포맷</li>
+            <li>확장 구조</li>
+          </ul>
+          <p class="big">여기까지 온 사람은<br>이미 다른 사람이 되어 있습니다</p>
+        </section>
+
+        <section class="ch" data-b="달라진 나" data-s="돌아가기 싫어집니다">
+          <span class="no">그 후</span>
+          <h2>참여 후 무엇이 달라지나</h2>
+          <ul class="after">
+            <li>“할까 말까”를 고민하지 않게 됩니다</li>
+            <li>시장을 보는 눈이 생깁니다</li>
+            <li>돈이 되는 구조를 처음으로 직접 만집니다</li>
+          </ul>
+          <p class="big"><span class="mute">그리고 무엇보다</span><br>다시는 예전으로 돌아가기 싫어집니다</p>
+        </section>
+
+        <section class="ch" data-key="fresh" data-b="새 알 하나" data-s="이번엔 당신 차례">
+          <span class="no">마지막 질문</span>
+          <h2>지금까지 당신은 몇 번이나<br>“이번엔 진짜”라고 말했나요</h2>
+        </section>
+
+        <section class="ch" id="apply" data-b="키울 건가요" data-s="이번에도 죽일 건가요">
+          <span class="no">참여 신청</span>
+          <h2>키울 건가요<br><span class="co">이번에도 죽일 건가요</span></h2>
+          <ul class="terms">
+            <li>선착순이 아닙니다</li>
+            <li>열정도 필요 없습니다</li>
+            <li>끝까지 할 사람만 남습니다</li>
+            <li>무료 면접 선발 매 회차 최대 10명</li>
+          </ul>
+          <div class="apply-cta">
+            <a class="btn big" href="http://pf.kakao.com/_LVxlXxj/chat" target="_blank" rel="noopener">카카오톡으로 참여 신청하기</a>
+            <p class="mute">메이크패밀리 카카오 채널 상담창이 열립니다<br>이름과 “이커머스 사장학교 신청”이라고 남겨주세요</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap"><span>윤대표의 이커머스 사장학교  메이크패밀리</span><span>makefamily.kr</span></div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="후기 캡처 크게 보기"><img id="lbImg" alt=""></div>
+
+<div class="dock"><a class="btn" href="http://pf.kakao.com/_LVxlXxj/chat" target="_blank" rel="noopener">카카오톡으로 참여 신청하기</a></div>
+
+<script>
+(() => {
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = id => document.getElementById(id);
+  const cam = $('cam'), wob = $('wob'), top = $('eggTop'), orb = $('orb'), chick = $('chick'), chickBody = $('chickBody'), eyes = $('eyes'), wingL = $('wingL'), wingR = $('wingR'), ring = $('ring'), rays = $('rays');
+  const fragsG = $('frags'), cracksG = $('cracks'), flash = $('flash'), floor = $('floor');
+  const ck = [...document.querySelectorAll('#cracks .ck')], br = [...document.querySelectorAll('#cracks .br')];
+  const chapters = [...document.querySelectorAll('.ch')];
+  const byKey = k => chapters.find(c => c.dataset.key === k);
+  const s1 = byKey('s1'), s4 = byKey('s4'), fresh = byKey('fresh');
+  const NS = 'http://www.w3.org/2000/svg';
+
+  // 빛줄기 12개
+  for (let i = 0; i < 12; i++) {
+    const l = document.createElementNS(NS, 'line');
+    const a = i / 12 * Math.PI * 2;
+    l.setAttribute('x1', Math.cos(a) * 60); l.setAttribute('y1', Math.sin(a) * 60 - 4);
+    l.setAttribute('x2', Math.cos(a) * 150); l.setAttribute('y2', Math.sin(a) * 150 - 4);
+    l.setAttribute('stroke', '#5C86FF'); l.setAttribute('stroke-width', '2'); l.setAttribute('stroke-linecap', 'round');
+    rays.appendChild(l);
+  }
+  // 파편 삼각형 14개 (깨지는 선 근처에서 출발)
+  const frags = Array.from({length: 14}, (_, i) => {
+    const p = document.createElementNS(NS, 'polygon');
+    const s = 5 + Math.random() * 8;
+    p.setAttribute('points', `0,${-s} ${s * .9},${s * .6} ${-s * .8},${s * .5}`);
+    p.setAttribute('fill', i % 3 ? '#0A3FCC' : '#5C86FF');
+    p.setAttribute('opacity', '0');
+    fragsG.appendChild(p);
+    const x0 = -85 + i / 13 * 170;
+    return {p, x0, y0: -6 + Math.sin(i * 1.7) * 8, vx: x0 * (1.6 + Math.random()) + (Math.random() - .5) * 60, vy: -220 - Math.random() * 180, vr: (Math.random() - .5) * 720};
+  });
+
+  const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+  const outBack = t => { const c = 1.7; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+  const outCubic = t => 1 - Math.pow(1 - t, 3);
+
+
+
+  // 웹툰 히어로 앞 7%는 제목이 물러나고 컷 프레임이 앞으로 나오는 구간 그 뒤로 컷을 넘긴다
+  const toon = $('story'), toonImgs = [...document.querySelectorAll('#frame img')];
+  const CH = [[1,"대학 시절"],[4,"패션회사 영업 3년"],[13,"회사를 그만두다"],[17,"새벽 동대문"],[22,"24시간 90일"],[24,"그렇게 쌓인 이력"],[28,"지금"]];
+  const toonCh = $('toonCh'), toonCount = $('toonCount'), toonAmb = $('toonAmb'), toonIntro = $('toonIntro'), frameEl = $('frame');
+  const ticks = [...document.querySelectorAll('#toonTicks i')], hud = document.querySelector('.toon-hud'), tickBar = $('toonTicks');
+  let toonLast = -1;
+  function readToon() {
+    const r = toon.getBoundingClientRect();
+    const p = clamp(-r.top / (r.height - innerHeight));
+    const intro = clamp(p / 0.07);
+    toonIntro.style.opacity = 1 - clamp(intro * 1.6);
+    toonIntro.style.transform = RM ? '' : `translateY(${-60 * intro}px) scale(${1 - 0.06 * intro})`;
+    frameEl.style.opacity = clamp((intro - 0.35) / 0.65);
+    frameEl.style.transform = `scale(${0.86 + 0.14 * outCubic(intro)})`;
+    hud.style.opacity = tickBar.style.opacity = clamp((intro - 0.6) / 0.4);
+    const f = clamp((p - 0.07) / 0.88) * (toonImgs.length - 1);
+    const i = Math.floor(f), k = f - i;
+    toonImgs.forEach((im, j) => {
+      let o = 0, sc = 1, ty = 0;
+      if (j === i) { o = 1; sc = RM ? 1 : 1.06 - 0.06 * k; }
+      else if (j === i + 1) { const e = clamp((k - 0.62) / 0.38); o = e; sc = RM ? 1 : 1.06; ty = RM ? 0 : (1 - outCubic(e)) * 26; }
+      im.style.opacity = o;
+      im.style.transform = o ? `translateY(${ty}px) scale(${sc})` : '';
+    });
+    const n = Math.min(toonImgs.length, Math.round(f) + 1);
+    if (n !== toonLast) {
+      toonLast = n;
+      toonCount.textContent = `${String(n).padStart(2, '0')} / ${toonImgs.length}`;
+      toonCh.textContent = CH.filter(c => c[0] <= n).pop()[1];
+      toonAmb.src = toonImgs[n - 1].src;
+      ticks.forEach((t, j) => { t.classList.toggle('on', j < n - 1); t.classList.toggle('now', j === n - 1); });
+    }
+  }
+
+  // 업력 연표 스크롤 위치로 장면을 고르고 연도 자릿수를 슬롯처럼 굴린다
+  const hist = $('history'), yearCols = [...document.querySelectorAll('#year .col')];
+  const evs = [...document.querySelectorAll('#events .ev')], bars = [...document.querySelectorAll('#track i')], ys = [...document.querySelectorAll('#trackY span')];
+  const portrait = $('portrait');
+  const YEARS = ['2018', '2019', '2020', '2021', '2026'];
+  let histIdx = -1;
+  function readHist() {
+    const r = hist.getBoundingClientRect();
+    const p = clamp(-r.top / (r.height - innerHeight));
+    const idx = Math.min(4, Math.floor(p * 5));
+    bars.forEach((b, i) => b.style.setProperty('--f', clamp(p * 5 - i)));
+    portrait.style.setProperty('--d', (0.55 + p * 0.5).toFixed(3));
+    portrait.style.setProperty('--g', (1 - clamp(p * 2.2)).toFixed(3));
+    portrait.style.setProperty('--py', `${(1 - p) * 30}px`);
+    if (idx === histIdx) return;
+    histIdx = idx;
+    YEARS[idx].split('').forEach((d, i) => { yearCols[i].style.transform = `translateY(${-d}em)`; yearCols[i].style.transitionDelay = `${i * 60}ms`; });
+    evs.forEach((e, i) => { e.classList.toggle('on', i === idx); e.classList.toggle('gone', i < idx); });
+    ys.forEach((y, i) => y.classList.toggle('on', i === idx));
+  }
+
+
+  // 후기 캡처를 누르면 크게 보고 배경을 누르거나 Esc로 닫는다
+  const lb = $('lb'), lbImg = $('lbImg');
+  document.querySelectorAll('.shot').forEach(b => b.addEventListener('click', () => { lbImg.src = b.dataset.full; lbImg.alt = b.getAttribute('aria-label'); lb.classList.add('on'); }));
+  lb.addEventListener('click', () => lb.classList.remove('on'));
+  addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('on'); });
+
+  // 업력 카드 보이면 숫자를 세며 올라간다
+  const corp = $('corp');
+  new IntersectionObserver((ents, ob) => {
+    if (!ents[0].isIntersecting) return;
+    ob.disconnect(); corp.classList.add('in');
+    corp.querySelectorAll('[data-count]').forEach(el => {
+      const to = +el.dataset.count, t0c = performance.now();
+      const tick = now => { const k = RM ? 1 : clamp((now - t0c) / 1400); el.textContent = Math.round(to * outCubic(k)); if (k < 1) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    });
+  }, {threshold: 0.3}).observe(corp);
+
+  let crack = 0, broken = false, isFresh = false;
+  let tb = 0, tbStart = 0, t0 = 0, dir = 0, last = performance.now(), shakeT = 0, lastStep = 0, freshPop = 1;
+
+  function readScroll() {
+    readToon();
+    readHist();
+    const mid = innerHeight * 0.45;
+    let hit = chapters[0];
+    for (const c of chapters) { if (c.getBoundingClientRect().top <= mid) hit = c; else break; }
+    $('st-b').textContent = hit.dataset.b;
+    $('st-s').textContent = hit.dataset.s;
+    const a = s1.getBoundingClientRect().top, b = s4.getBoundingClientRect().top;
+    const nowFresh = fresh.getBoundingClientRect().top <= mid;
+    if (nowFresh && !isFresh) freshPop = 0;
+    isFresh = nowFresh;
+    crack = isFresh ? 0 : clamp((mid - a) / (b - a));
+    const shouldBreak = !isFresh && b <= mid;
+    if (shouldBreak !== broken) { broken = shouldBreak; dir = broken ? 1 : -1; tbStart = tb; t0 = performance.now(); }
+    // 금이 한 단계 더 갈 때마다 톡 흔들림
+    const step = Math.floor(crack * 3);
+    if (step > lastStep && !broken) shakeT = 1;
+    lastStep = step;
+  }
+
+  function frame(now) {
+    const dt = Math.min(250, now - last); last = now;
+    // 프레임 수가 아니라 실제 흐른 시간으로 진행해서 화면 갱신이 느려도 끝까지 간다
+    if (dir === 1) tb = RM ? 1 : Math.min(1, tbStart + (now - t0) / 1100);
+    if (dir === -1) tb = RM ? 0 : Math.max(0, tbStart - (now - t0) / 380);
+    if (shakeT > 0) shakeT = Math.max(0, shakeT - dt / 260);
+    if (freshPop < 1) freshPop = RM ? 1 : Math.min(1, freshPop + dt / 500);
+    const t = now / 1000;
+
+    // 금 그리기 스크롤에 맞춰 문지르듯
+    ck.forEach(p => { p.style.strokeDasharray = 1; p.style.strokeDashoffset = 1 - clamp(crack / 0.45); });
+    br.forEach((p, i) => { p.style.strokeDasharray = 1; p.style.strokeDashoffset = 1 - clamp((crack - 0.35 - i * 0.1) / 0.25); });
+    const leak = clamp((crack - 0.6) / 0.4);
+    cracksG.setAttribute('stroke-width', 2.6 + leak * 2.2);
+    cracksG.style.opacity = tb > 0.2 ? 0 : 1;
+    // 깨지기 전에는 통짜 알을 보여줘서 반쪽 경계선이 비치지 않게 한다
+    $('whole').style.opacity = tb > 0.2 ? 0 : 1;
+    $('halves').setAttribute('opacity', tb > 0.2 ? 1 : 0);
+
+    // 평소 숨쉬기 금이 갈수록 떨림이 세진다
+    const anticip = dir === 1 && tb < 0.22 ? 1 - Math.abs(tb / 0.22 - 0.5) * 2 : 0;
+    const amp = RM ? 0 : 0.6 + crack * 3 + shakeT * 6 + anticip * 7;
+    const rot = Math.sin(t * (2 + crack * 9)) * amp * 0.7 + (shakeT ? Math.sin(t * 60) * shakeT * 4 : 0) + (anticip ? Math.sin(t * 70) * anticip * 5 : 0);
+    const breathe = RM ? 1 : 1 + Math.sin(t * 1.6) * 0.008;
+    const pop = isFresh ? 0.8 + 0.2 * outBack(freshPop) : 1;
+    wob.setAttribute('transform', `translate(0 ${-4 + (RM ? 0 : Math.sin(t * 1.6) * 2)}) rotate(${rot} 0 120) scale(${breathe * pop})`);
+
+    // 깨짐 연출
+    const q = clamp((tb - 0.22) / 0.78);
+    const qe = outBack(q);
+    top.setAttribute('transform', `translate(${-46 * qe} ${-120 * qe}) rotate(${-32 * qe} 0 -10)`);
+    orb.setAttribute('opacity', clamp(q * 3));
+    orb.setAttribute('transform', `translate(0 ${-14 * outCubic(q)}) scale(${0.3 + 0.7 * qe})`);
+    // 안에서 넥타이 맨 병아리 사장이 튀어나온다 높이 뛰었다가 껍데기에 쏙 걸쳐 앉는다
+    const j = clamp((tb - 0.3) / 0.7);
+    const jump = j < 0.45 ? outCubic(j / 0.45) : 1 + Math.sin((j - 0.45) / 0.55 * Math.PI) * 0.35 * (1 - (j - 0.45) / 0.55);
+    const idle = tb >= 1 && !RM ? Math.sin(t * 3) * 3 : 0;
+    const cy = 70 - 120 * (j < 0.45 ? jump * 1.35 : 1.35 - 0.35 * (j - 0.45) / 0.55 - (jump - 1)) + idle;
+    const squash = j > 0.88 && j < 1 ? 1 - Math.sin((j - 0.88) / 0.12 * Math.PI) * 0.12 : 1;
+    chick.setAttribute('opacity', tb > 0.3 ? 1 : 0);
+    chickBody.setAttribute('transform', `translate(0 ${cy}) rotate(${j < 1 ? (1 - j) * 18 * Math.sin(j * 12) : Math.sin(t * 1.5) * 3} 0 40) scale(${1 / squash} ${squash})`);
+    const flap = RM ? 0 : (j < 1 ? Math.sin(t * 40) * 25 : Math.max(0, Math.sin(t * 2.2)) ** 6 * Math.sin(t * 30) * 22);
+    wingL.setAttribute('transform', `rotate(${-flap} -36 -6)`);
+    wingR.setAttribute('transform', `rotate(${flap} 36 -6)`);
+    const blink = (t % 3.2) < 0.12 ? 0.1 : 1;
+    eyes.setAttribute('transform', `translate(0 ${-12 * (1 - blink)}) scale(1 ${blink})`);
+    const fwd = dir === 1;
+    const burst = fwd ? clamp((tb - 0.22) / 0.45) : 0;
+    ring.setAttribute('r', 40 + burst * 160);
+    ring.setAttribute('opacity', burst > 0 && burst < 1 ? (1 - burst) * 0.8 : 0);
+    rays.setAttribute('opacity', burst > 0 && burst < 1 ? (1 - burst) : 0);
+    rays.setAttribute('transform', `rotate(${burst * 25}) scale(${0.7 + burst * 0.6})`);
+    flash.style.opacity = fwd && tb > 0.22 && tb < 0.4 ? (0.4 - tb) / 0.18 * 0.55 : 0;
+    const shake = fwd && tb > 0.22 && tb < 0.5 ? (0.5 - tb) / 0.28 * 9 : 0;
+    cam.setAttribute('transform', shake && !RM ? `translate(${(Math.random() - .5) * shake} ${(Math.random() - .5) * shake})` : '');
+    floor.setAttribute('rx', 78 + q * 14);
+
+    const ft = fwd ? clamp((tb - 0.22) / 0.78) * 1.3 : 0;
+    frags.forEach(f => {
+      const x = f.x0 + f.vx * ft, y = f.y0 + f.vy * ft + 0.5 * 620 * ft * ft;
+      f.p.setAttribute('transform', `translate(${x} ${y}) rotate(${f.vr * ft})`);
+      f.p.setAttribute('opacity', ft > 0 && ft < 1.25 ? clamp(1.25 - ft) : 0);
+    });
+    requestAnimationFrame(frame);
+  }
+
+  let tick = false;
+  addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(() => { tick = false; readScroll(); }); } }, {passive: true});
+  addEventListener('resize', readScroll);
+  readScroll();
+  requestAnimationFrame(frame);
+
+
+})();
+</script>
+
+</body>
+</html>
