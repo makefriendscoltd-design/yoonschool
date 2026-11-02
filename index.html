@@ -30,6 +30,7 @@
   color-scheme: light;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 17px; line-height: 1.75; word-break: keep-all; -webkit-font-smoothing: antialiased; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
 h1, h2, h3, p, ul, ol { margin: 0; padding: 0; }
@@ -140,6 +141,22 @@ form .btn { width: 100%; }
 .terms2 li { font-size: 16px; font-weight: 600; padding: 10px 18px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .22); }
 .apply2 .apply-cta .mute { color: #8C97B8; }
 .apply2 .btn { background: #FFFFFF; color: var(--fg); }
+.app { background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .12); border-radius: 24px; padding: 32px; display: grid; gap: 18px; width: 100%; max-width: 820px; }
+.app-h { font-size: 20px; font-weight: 700; }
+.app label { display: grid; gap: 8px; font-size: 15px; font-weight: 600; color: #DCE3F7; }
+.app .hint { font-weight: 500; color: #8C97B8; margin-left: 8px; }
+.app .goal { grid-template-columns: auto 1fr; align-items: center; }
+.app .goal input { grid-column: 1 / -1; font-size: 20px; font-weight: 700; }
+.row3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.app input, .app textarea { background: #FFFFFF; border: 1px solid transparent; color: var(--fg); min-height: 0; }
+.app input:focus, .app textarea:focus { border-color: var(--cobalt-light); box-shadow: 0 0 0 3px rgba(92, 134, 255, .35); }
+.app .btn { width: 100%; background: var(--cobalt-light); color: #FFFFFF; }
+.app .btn:hover { background: #4573F5; }
+.app .btn[disabled] { opacity: .6; cursor: wait; }
+.app-msg { font-size: 14px; color: #FFB4B4; min-height: 1.4em; }
+.done { font-size: clamp(22px, 2.4vw, 30px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.35; }
+@media (max-width: 760px) { .row3 { grid-template-columns: minmax(0, 1fr); } .app { padding: 22px; } }
+
 .apply2 .btn:hover { background: #DCE5FF; }
 
 .btn.big { height: 60px; font-size: 18px; border-radius: 16px; }
@@ -191,7 +208,7 @@ footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-cont
 .sec-head { display: grid; gap: 14px; margin-bottom: 48px; }
 .sec-head .no { font-size: 14px; font-weight: 700; color: var(--cobalt); }
 .sec-head h2 { font-size: clamp(30px, 4vw, 48px); line-height: 1.25; }
-.hist { position: relative; height: 520vh; border-top: 1px solid var(--line); }
+.hist { position: relative; height: 1100vh; border-top: 1px solid var(--line); }
 .hist-pin { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 58px); height: calc(100vh - 58px); overflow: hidden; }
 .hist-pin .wrap { height: 100%; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 48px; align-items: center; }
 .portrait { position: relative; height: min(78vh, 640px); display: grid; place-items: end center; }
@@ -209,12 +226,17 @@ footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-cont
 .ev.gone { opacity: 0; transform: translateY(-18px); clip-path: inset(0 0 0 0); }
 .ev h3 { font-size: clamp(26px, 3vw, 38px); line-height: 1.3; }
 .ev p { color: var(--mute); }
-.track { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.track { display: grid; grid-template-columns: repeat(15, minmax(0, 1fr)); gap: 3px; }
 .track i { height: 4px; border-radius: 2px; background: var(--line); position: relative; overflow: hidden; }
 .track i::after { content: ""; position: absolute; inset: 0; background: var(--cobalt); transform: scaleX(var(--f, 0)); transform-origin: left; }
 .track-y { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; font-size: 13px; color: var(--dim); font-weight: 600; font-variant-numeric: tabular-nums; }
 .track-y span.on { color: var(--cobalt); }
 
+
+.nonstop { font-size: clamp(24px, 2.6vw, 34px); font-weight: 800; letter-spacing: -0.035em; }
+.cnt { display: flex; align-items: flex-end; gap: 14px; }
+.cnt-l { font-size: 18px; font-weight: 700; line-height: 1.3; color: var(--cobalt); padding-bottom: .6em; }
+.ev .yr { justify-self: start; font-size: 13px; font-weight: 700; color: #FFFFFF; background: var(--cobalt); padding: 3px 10px; border-radius: 999px; }
 /* 업력 */
 .biz, .vids, .cases, .spec { border-top: 1px solid var(--line); }
 .biz > .wrap, .vids > .wrap, .cases > .wrap, .spec > .wrap { padding-block: 120px; }
@@ -233,6 +255,20 @@ footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-cont
 .corp li.feat .src { color: #C9D6FF; }
 .slot-note { display: inline-block; font-size: 13px; font-weight: 600; color: var(--cobalt); border: 1px dashed #B9C8F3; border-radius: 8px; padding: 4px 10px; }
 
+
+.total { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; padding: 36px 40px; border-radius: 24px; background: var(--cobalt); color: #FFFFFF; margin-bottom: 20px; }
+.total-l { font-size: 18px; font-weight: 700; color: #C9D6FF; }
+.total-n { font-size: clamp(64px, 10vw, 140px); font-weight: 800; letter-spacing: -0.05em; line-height: 1; font-variant-numeric: tabular-nums; }
+.brands { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.brands li { border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; display: grid; gap: 10px; align-content: start; min-height: 110px; }
+.brands b { font-size: 20px; letter-spacing: -0.03em; }
+.role { justify-self: start; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+.r-op { background: var(--cobalt); color: #FFFFFF; }
+.r-pl { background: var(--tint); color: var(--cobalt); }
+.r-ds { background: #EEF0F5; color: #4A5578; }
+.r-ln { background: #0A1638; color: #FFFFFF; }
+.r-ed { background: #DCE5FF; color: var(--cobalt-deep); }
+@media (max-width: 900px) { .brands { grid-template-columns: repeat(2, minmax(0, 1fr)); } .total { padding: 28px; } }
 /* 인터뷰 영상 */
 .vgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .vcard { display: grid; gap: 12px; text-decoration: none; color: inherit; }
@@ -410,16 +446,26 @@ footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-cont
         <div class="portrait" id="portrait"><span class="disc" aria-hidden="true"></span><img src="yoon.webp" alt="메이크패밀리 대표 윤동규" width="900" height="1180"></div>
         <div class="hist-copy">
           <p class="who"><b>윤동규</b>메이크패밀리 대표</p>
-          <div class="year" id="year" aria-live="polite"><span class="col"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span><span class="col"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span><span class="col"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span><span class="col"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></div>
+          <p class="nonstop">쉬지 않고 시작했습니다</p>
+          <div class="year" id="year" aria-hidden="true"><span class="col"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span><span class="col"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span><span class="col"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span><span class="col"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></div>
           <div class="events" id="events">
-            <div class="ev"><h3>온라인 사업 시작</h3><p>2018년 7월 7일 시작<br>그해 10월 매출 1억 2000만원</p></div>
-            <div class="ev"><h3>(주)메이크프렌즈 대표</h3><p>건강 관리 측정 용품 홈케어 뷰티기기 건강 푸드 스토어</p></div>
-            <div class="ev"><h3>(주)데일리앤그릭</h3><p>공동대표이사 그릭요거트 광명본점 청라공장<br>그해 온라인 매출 40억</p></div>
-            <div class="ev"><h3>(주)메이크패밀리 대표</h3><p>셀러가 운영하는 대행사</p></div>
-            <div class="ev"><h3>9년차 사업가<br>3개 법인 현업 대표</h3><p>지금도 직접 팔고 있습니다</p></div>
+            <div class="ev"><h3>온라인 사업 시작</h3><p>7월 7일 혼자 시작했습니다</p></div>
+            <div class="ev"><h3>첫 매출 1억 2000만원</h3><p>시작 석 달 만인 10월</p></div>
+            <div class="ev"><h3>(주)메이크프렌즈</h3><p>건강 관리 용품 홈케어 뷰티기기 건강 푸드 스토어</p></div>
+            <div class="ev"><h3>(주)데일리앤그릭</h3><p>그릭요거트 광명본점 오픈 청라공장 설립</p></div>
+            <div class="ev"><h3>온라인 매출 40억</h3><p>사업 시작 2년 만에</p></div>
+            <div class="ev"><h3>(주)메이크패밀리</h3><p>셀러가 운영하는 대행사와 교육</p></div>
+            <div class="ev"><h3>메이크프렌즈 연매출 27억~41억</h3><p>2021~2023년 원장 기준</p></div>
+            <div class="ev"><h3>유튜브 메이크패밀리</h3><p>파는 법을 영상으로 전부 공개하기 시작</p></div>
+            <div class="ev"><h3>사업자 PT 첫 모집</h3><p>단 10명 1:1로 붙어서</p></div>
+            <div class="ev"><h3>패밀리데이</h3><p>2년째 매달 오프라인 모임 서울 부산 제주</p></div>
+            <div class="ev"><h3>AIMAX 런칭</h3><p>AI 마케팅 자동화</p></div>
+            <div class="ev"><h3>첫 이커머스 사장학교 오프라인 수업</h3><p>2시간 풀버전 공개</p></div>
+            <div class="ev"><h3>AI 사장학교 런칭</h3><p>사장님 일을 맡길 AI 직원을 직접 만드는 학교</p></div>
+            <div class="ev"><h3>MCN 뷰티해 런칭</h3><p>인플루언서를 뽑아서 키웁니다</p></div>
+            <div class="ev"><h3>그리고 지금</h3><p>쉬지 않고 다음을 시작하는 중입니다</p></div>
           </div>
-          <div class="track" id="track" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-          <div class="track-y" id="trackY" aria-hidden="true"><span>2018</span><span>2019</span><span>2020</span><span>2021</span><span>지금</span></div>
+          <div class="track" id="track" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         </div>
       </div>
     </div>
@@ -428,11 +474,22 @@ footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-cont
   <section class="biz" id="career">
     <div class="wrap">
       <div class="sec-head"><span class="no">업력</span><h2>말이 아니라<br>회사로 증명합니다</h2></div>
-      <ul class="corp" id="corp">
-        <li class="feat"><span class="since">2019년부터</span><h3>메이크프렌즈</h3><p class="num"><span data-count="27">0</span>억~<span data-count="41">0</span>억</p><p class="src">2021~2023년 연매출<br>(주)메이크프렌즈 원장 기준</p></li>
-        <li><span class="since">교육과 대행</span><h3>메이크패밀리</h3><p>셀러가 운영하는 대행사<br>유튜브 채널 메이크패밀리 운영</p></li>
-        <li><span class="since">AI 교육</span><h3>AI 사장학교</h3><p>사장님 일을 맡길 AI 직원<br>직접 만드는 학교</p></li>
-        <li><span class="since">인플루언서 MCN</span><h3>뷰티해</h3><p>인플루언서를 뽑아서<br>콘텐츠 기획부터 광고 연결까지 키웁니다</p></li>
+      <div class="total" id="corp">
+        <span class="total-l">총 누적 매출</span>
+        <p class="total-n"><span data-count="200">0</span>억</p>
+      </div>
+      <ul class="brands">
+        <li><span class="role r-op">법인 운영</span><b>메이크프렌즈</b></li>
+        <li><span class="role r-op">법인 운영</span><b>데일리앤그릭</b></li>
+        <li><span class="role r-op">법인 운영</span><b>메이크패밀리</b></li>
+        <li><span class="role r-pl">기획</span><b>닥터드롭</b></li>
+        <li><span class="role r-pl">기획</span><b>엄지언니</b></li>
+        <li><span class="role r-ds">총판</span><b>잎순</b></li>
+        <li><span class="role r-ds">총판</span><b>주아스킨</b></li>
+        <li><span class="role r-ds">총판</span><b>메이크페이스</b></li>
+        <li><span class="role r-ed">교육</span><b>AI 사장학교</b></li>
+        <li><span class="role r-ed">교육</span><b>MCN 뷰티해</b></li>
+        <li><span class="role r-ed">교육</span><b>이커머스 사장학교</b></li>
       </ul>
     </div>
   </section>
@@ -706,9 +763,24 @@ footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-cont
         <li>끝까지 할 사람만 남습니다</li>
         <li>무료 면접 선발 매 회차 최대 10명</li>
       </ul>
-      <div class="apply-cta">
+      <form class="app" id="appForm" novalidate>
+        <p class="app-h">대기방 입장 전에 신청서를 먼저 받습니다</p>
+        <div class="row3">
+          <label>이름<input name="name" autocomplete="name" required></label>
+          <label>연락처<input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000" required></label>
+          <label>메일주소<input name="email" type="email" autocomplete="email" placeholder="name@example.com" required></label>
+        </div>
+        <label class="goal">얼마 벌고 싶나요<span class="hint">한 달 기준</span><input name="goal" inputmode="numeric" placeholder="예 월 500만원" required></label>
+        <label>좋아하는 것<textarea name="like" rows="2" placeholder="시간 가는 줄 모르고 하는 것"></textarea></label>
+        <label>잘하는 것<textarea name="good" rows="2" placeholder="남들보다 조금 더 잘하는 것"></textarea></label>
+        <label>하고 싶은 것<textarea name="want" rows="2" placeholder="이 학교에서 이루고 싶은 것"></textarea></label>
+        <button class="btn big" type="submit">신청서 제출하기</button>
+        <p class="app-msg" id="appMsg" role="status"></p>
+      </form>
+      <div class="apply-cta" id="afterApply" hidden>
+        <p class="done">신청서가 접수됐습니다<br>이제 대기방에 들어와 주세요</p>
         <a class="btn big" href="https://open.kakao.com/o/g98NBWzi" target="_blank" rel="noopener">카카오톡 대기방 입장하기</a>
-        <p class="mute">이커머스 사장학교 대기방 오픈채팅이 열립니다<br>모집 안내와 면접 일정은 대기방에서 먼저 알려드립니다</p>
+        <p class="mute">모집 안내와 면접 일정은 대기방에서 먼저 알려드립니다</p>
       </div>
     </div>
   </section>
@@ -720,7 +792,7 @@ footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-cont
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="후기 캡처 크게 보기"><img id="lbImg" alt=""></div>
 
-<div class="dock"><a class="btn" href="https://open.kakao.com/o/g98NBWzi" target="_blank" rel="noopener">카카오톡 대기방 입장하기</a></div>
+<div class="dock"><a class="btn" href="#apply">신청서 쓰고 대기방 입장하기</a></div>
 
 <script>
 (() => {
@@ -807,23 +879,21 @@ footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-cont
 
   // 업력 연표 스크롤 위치로 장면을 고르고 연도 자릿수를 슬롯처럼 굴린다
   const hist = $('history'), yearCols = [...document.querySelectorAll('#year .col')];
-  const evs = [...document.querySelectorAll('#events .ev')], bars = [...document.querySelectorAll('#track i')], ys = [...document.querySelectorAll('#trackY span')];
+  const evs = [...document.querySelectorAll('#events .ev')], bars = [...document.querySelectorAll('#track i')], NE = evs.length;
   const portrait = $('portrait');
-  const YEARS = ['2018', '2019', '2020', '2021', '2026'];
   let histIdx = -1;
   function readHist() {
     const r = hist.getBoundingClientRect();
     const p = clamp(-r.top / (r.height - innerHeight));
-    const idx = Math.min(4, Math.floor(p * 5));
-    bars.forEach((b, i) => b.style.setProperty('--f', clamp(p * 5 - i)));
+    const idx = Math.min(NE - 1, Math.floor(p * NE));
+    bars.forEach((b, i) => b.style.setProperty('--f', clamp(p * NE - i)));
     portrait.style.setProperty('--d', (0.55 + p * 0.5).toFixed(3));
     portrait.style.setProperty('--g', (1 - clamp(p * 2.2)).toFixed(3));
     portrait.style.setProperty('--py', `${(1 - p) * 30}px`);
     if (idx === histIdx) return;
     histIdx = idx;
-    YEARS[idx].split('').forEach((d, i) => { yearCols[i].style.transform = `translateY(${-d}em)`; yearCols[i].style.transitionDelay = `${i * 60}ms`; });
+    ['2018','2018','2019','2020','2020','2021','2022','2023','2023','2024','2025','2026','2026','2026','2026'][idx].split('').forEach((d, i) => { yearCols[i].style.transform = `translateY(${-d}em)`; yearCols[i].style.transitionDelay = `${i * 60}ms`; });
     evs.forEach((e, i) => { e.classList.toggle('on', i === idx); e.classList.toggle('gone', i < idx); });
-    ys.forEach((y, i) => y.classList.toggle('on', i === idx));
   }
 
 
@@ -832,6 +902,25 @@ footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-cont
   document.querySelectorAll('.shot').forEach(b => b.addEventListener('click', () => { lbImg.src = b.dataset.full; lbImg.alt = b.getAttribute('aria-label'); lb.classList.add('on'); }));
   lb.addEventListener('click', () => lb.classList.remove('on'));
   addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('on'); });
+
+
+  // 신청서는 구글 앱스스크립트로 보내 구글 시트에 한 줄씩 쌓는다 text/plain 이라 브라우저 사전 확인 요청이 없다
+  const INTAKE = 'https://script.google.com/macros/s/AKfycbx8w8X-ip1p3WzFQT3Jj5qH5kVvvO7YwHpC0Z8zSc8whdGjeb3wkx7LcLTHnJ7zEvnF/exec';
+  const form = $('appForm'), appMsg = $('appMsg');
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const d = Object.fromEntries(new FormData(form));
+    for (const k in d) d[k] = d[k].trim();
+    if (!d.name || !d.phone || !d.email || !d.goal) { appMsg.textContent = '이름 연락처 메일주소 목표 금액을 적어주세요'; return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)) { appMsg.textContent = '메일주소 형식을 확인해주세요'; return; }
+    const btn = form.querySelector('button'); btn.disabled = true; appMsg.textContent = '';
+    try {
+      const r = await fetch(INTAKE, { method: 'POST', body: JSON.stringify({ ...d, source: location.hostname || 'preview' }) });
+      const j = await r.json();
+      if (!j.ok) throw new Error('rejected');
+      form.hidden = true; $('afterApply').hidden = false; $('afterApply').scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'center' });
+    } catch (err) { appMsg.textContent = '접수가 안 됐어요 잠시 후 다시 제출해주세요'; btn.disabled = false; }
+  });
 
   // 업력 카드 보이면 숫자를 세며 올라간다
   const corp = $('corp');
