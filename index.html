@@ -77,7 +77,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .status span { font-size: 14px; color: var(--mute); }
 .flash { position: fixed; inset: 0; background: #FFFFFF; opacity: 0; pointer-events: none; z-index: 25; }
 
-.ch { padding-block: 120px; border-bottom: 1px solid var(--line); display: grid; gap: 24px; align-content: start; min-height: 80vh; }
+.ch { padding-block: 140px; border-bottom: 1px solid var(--line); display: grid; gap: 24px; align-content: start; min-height: 90vh; }
+.ch[data-f="2-3"] { min-height: 140vh; }
+.ch[data-f="4-6"], .ch[data-f="7-9"] { min-height: 190vh; }
 .ch:last-child { border-bottom: 0; }
 .ch .no { font-size: 14px; font-weight: 700; color: var(--cobalt); font-variant-numeric: tabular-nums; }
 .ch h2 { font-size: clamp(28px, 3.4vw, 42px); line-height: 1.3; }
@@ -126,7 +128,7 @@ form .btn { width: 100%; }
 .msg { font-size: 14px; color: var(--mute); }
 .apply-cta { display: grid; gap: 14px; max-width: 520px; }
 /* 마지막 질문 알 없이 글자만 스크롤 따라 한 단어씩 불이 켜진다 */
-.finale { position: relative; height: 240vh; background: var(--fg); color: #FFFFFF; }
+.finale { position: relative; height: 300vh; background: var(--fg); color: #FFFFFF; }
 .fin-pin { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 58px); height: calc(100vh - 58px); display: grid; align-items: center; }
 .finale .no { font-size: 15px; font-weight: 700; color: var(--cobalt-light); }
 .fin-q { margin-top: 24px; font-size: clamp(40px, 7.2vw, 104px); font-weight: 800; line-height: 1.16; letter-spacing: -0.05em; text-wrap: balance; }
@@ -170,8 +172,8 @@ footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-cont
 /* 히어로 윤동규 히스토리 웹툰
    첫 화면은 제목 한 장 스크롤을 시작하면 제목이 물러나고 컷이 앞으로 나온다
    뒤에는 지금 컷을 크게 흐린 빛을 깔아 컷마다 화면 공기가 바뀐다 */
-.toon { position: relative; height: calc(25 * 50vh + 180vh); background: #060B1E; color: #FFFFFF; }
-.toon-pin { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 58px); height: calc(100vh - 58px); overflow: hidden; display: grid; place-items: center; }
+.toon { position: relative; background: #060B1E; color: #FFFFFF; }
+.toon-pin { position: relative; height: calc(100vh - 58px); height: calc(100svh - 58px); min-height: 560px; overflow: hidden; display: grid; place-items: center; align-content: center; gap: 14px; }
 .toon-amb { position: absolute; inset: -10%; width: 120%; height: 120%; object-fit: cover; filter: blur(48px) saturate(1.25); opacity: .38; transform: scale(1.1); transition: opacity .6s ease; pointer-events: none; }
 .toon-pin::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(6, 11, 30, 0) 30%, rgba(6, 11, 30, .85) 100%); pointer-events: none; }
 .toon-intro { position: absolute; inset: 0; z-index: 3; display: grid; place-content: center; justify-items: center; text-align: center; gap: 28px; padding: 0 24px; pointer-events: none; }
@@ -181,34 +183,48 @@ footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-cont
 .toon-intro h1 span { display: block; opacity: 0; transform: translateY(36px); animation: rise .9s cubic-bezier(.2, .9, .1, 1) forwards; }
 .toon-intro h1 span:nth-child(2) { animation-delay: .14s; color: var(--cobalt-light); }
 .t-kicker { opacity: 0; animation: rise .8s .05s cubic-bezier(.2, .9, .1, 1) forwards; }
-.t-cue { display: flex; flex-direction: column; align-items: center; gap: 12px; font-size: 14px; color: #8C97B8; opacity: 0; animation: rise .8s .5s ease forwards; }
-.t-cue i { width: 1px; height: 44px; background: linear-gradient(transparent, var(--cobalt-light)); animation: drip 1.8s ease-in-out infinite; transform-origin: top; }
+.t-start { pointer-events: auto; display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 26px; border: 0; border-radius: 999px; background: #FFFFFF; color: #0A1638; font: inherit; font-size: 17px; font-weight: 800; cursor: pointer; opacity: 0; animation: rise .8s .5s ease forwards; }
+.t-start i { font-style: normal; font-size: 13px; }
+.t-start:focus-visible, .toon-ctl button:focus-visible, .frame:focus-visible { outline: 3px solid var(--cobalt-light); outline-offset: 3px; }
+.t-auto { font-size: 13px; color: #8C97B8; opacity: 0; animation: rise .8s .7s ease forwards; }
+.toon-intro { transition: opacity .6s ease, transform .8s cubic-bezier(.2, .9, .1, 1); }
+.toon.started .toon-intro { opacity: 0; transform: translateY(-40px) scale(.96); visibility: hidden; transition: opacity .6s ease, transform .8s cubic-bezier(.2, .9, .1, 1), visibility 0s .8s; }
 @keyframes rise { to { opacity: 1; transform: none; } }
 @keyframes drip { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
-.frame { position: relative; z-index: 2; width: min(calc(100vh - 190px), 680px, calc(100vw - 40px)); aspect-ratio: 1; border-radius: 20px; overflow: hidden; background: #FFFFFF; box-shadow: 0 40px 120px rgba(0, 0, 0, .55); opacity: 0; transform: scale(.86); }
-.frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; will-change: opacity, transform; }
-.toon-hud { position: absolute; z-index: 3; left: max(24px, env(safe-area-inset-left, 0px)); right: max(24px, env(safe-area-inset-right, 0px)); top: 22px; display: flex; justify-content: space-between; align-items: baseline; opacity: 0; }
+.frame { position: relative; z-index: 2; width: min(calc(100vh - 240px), 680px, calc(100vw - 32px)); width: min(calc(100svh - 240px), 680px, calc(100vw - 32px)); aspect-ratio: 1; border-radius: 20px; overflow: hidden; background: #FFFFFF; box-shadow: 0 40px 120px rgba(0, 0, 0, .55); opacity: 0; transform: scale(.9); transition: opacity .6s .15s ease, transform .9s .15s cubic-bezier(.2, .9, .1, 1); cursor: pointer; touch-action: pan-y; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+.toon.started .frame { opacity: 1; transform: none; }
+.frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .55s ease; pointer-events: none; }
+.frame img.on { opacity: 1; animation: kb var(--d, 4s) linear both; }
+.frame.paused img.on { animation-play-state: paused; }
+@keyframes kb { from { transform: scale(1.07); } to { transform: scale(1); } }
+.t-bars { position: absolute; z-index: 3; top: 10px; left: 10px; right: 10px; display: flex; gap: 3px; pointer-events: none; }
+.t-bars i { flex: 1; height: 3px; border-radius: 2px; background: rgba(10, 22, 56, .22); overflow: hidden; }
+.t-bars b { display: block; height: 100%; background: #0A1638; transform: scaleX(0); transform-origin: left; }
+.toon-ctl { position: relative; z-index: 3; display: flex; align-items: center; gap: 8px; opacity: 0; transition: opacity .5s .4s ease; }
+.toon.started .toon-ctl { opacity: 1; }
+.toon-ctl button { width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .28); background: rgba(255, 255, 255, .08); color: #FFFFFF; font: inherit; font-size: 18px; font-weight: 800; cursor: pointer; display: grid; place-items: center; }
+.toon-ctl button.wide { width: auto; padding: 0 18px; border-radius: 999px; font-size: 15px; }
+.toon-ctl .t-hint { margin-left: 6px; font-size: 13px; color: #8C97B8; }
+.toon-ctl .t-skip { margin-left: 6px; font-size: 14px; font-weight: 700; color: #C9D3F2; text-decoration: underline; text-underline-offset: 4px; }
+.toon-hud { position: absolute; z-index: 3; left: max(24px, env(safe-area-inset-left, 0px)); right: max(24px, env(safe-area-inset-right, 0px)); top: 22px; display: flex; justify-content: space-between; align-items: baseline; opacity: 0; transition: opacity .5s .4s ease; }
+.toon.started .toon-hud { opacity: 1; }
 .hud-ch { font-size: 17px; font-weight: 700; }
 .hud-n { font-size: 13px; color: #8C97B8; font-variant-numeric: tabular-nums; }
-.toon-ticks { position: absolute; z-index: 3; left: 50%; bottom: 22px; transform: translateX(-50%); display: flex; gap: 4px; opacity: 0; }
-.toon-ticks i { width: 10px; height: 3px; border-radius: 2px; background: rgba(255, 255, 255, .18); transition: background .3s ease, width .3s ease; }
-.toon-ticks i.on { background: var(--cobalt-light); }
-.toon-ticks i.now { width: 22px; background: #FFFFFF; }
 @media (max-width: 900px) {
-  .toon { height: calc(25 * 44vh + 160vh); }
-  .toon-ticks i { width: 6px; }
-  .toon-ticks i.now { width: 14px; }
+  .toon-hud { top: 14px; }
+  .toon-ctl .t-hint { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .toon-intro h1 span, .t-kicker, .t-cue { animation: none; opacity: 1; transform: none; }
-  .t-cue i { animation: none; }
+  .toon-intro h1 span, .t-kicker { animation: none; opacity: 1; transform: none; }
+  .t-start, .t-auto { animation: none; opacity: 1; }
+  .frame img.on { animation: none; }
 }
 
 /* 업력 연표: 스크롤을 붙잡고 연도가 슬롯처럼 굴러간다 */
 .sec-head { display: grid; gap: 14px; margin-bottom: 48px; }
 .sec-head .no { font-size: 14px; font-weight: 700; color: var(--cobalt); }
 .sec-head h2 { font-size: clamp(30px, 4vw, 48px); line-height: 1.25; }
-.hist { position: relative; height: 1200vh; border-top: 1px solid var(--line); }
+.hist { position: relative; height: 920vh; border-top: 1px solid var(--line); }
 .hist-pin { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 58px); height: calc(100vh - 58px); overflow: hidden; }
 .hist-pin .wrap { height: 100%; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 48px; align-items: center; }
 .portrait { position: relative; height: min(78vh, 640px); display: grid; place-items: end center; }
@@ -220,10 +236,11 @@ footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-cont
 .year { display: flex; font-size: clamp(88px, 13vw, 168px); font-weight: 800; letter-spacing: -0.06em; line-height: 1; height: 1em; overflow: hidden; color: var(--cobalt); font-variant-numeric: tabular-nums; }
 .year .col { display: flex; flex-direction: column; transition: transform .7s cubic-bezier(.2, .9, .1, 1.08); }
 .year .col span { height: 1em; display: block; }
-.events { position: relative; min-height: 132px; }
-.ev { position: absolute; inset: 0 0 auto; display: grid; gap: 8px; opacity: 0; transform: translateY(24px); clip-path: inset(0 0 100% 0); transition: opacity .45s ease, transform .6s cubic-bezier(.2, .9, .1, 1), clip-path .6s cubic-bezier(.2, .9, .1, 1); }
-.ev.on { opacity: 1; transform: none; clip-path: inset(0 0 0 0); }
-.ev.gone { opacity: 0; transform: translateY(-18px); clip-path: inset(0 0 0 0); }
+.events { display: grid; gap: 12px; min-height: 132px; align-content: start; }
+.ev { display: none; gap: 8px; }
+.ev.on { display: grid; animation: evIn .7s cubic-bezier(.2, .9, .1, 1) both; animation-delay: calc(var(--i, 0) * 220ms); }
+@keyframes evIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.events.many .ev h3 { font-size: clamp(20px, 2.2vw, 28px); }
 .ev h3 { font-size: clamp(26px, 3vw, 38px); line-height: 1.3; }
 .ev p { color: var(--mute); }
 .track { display: grid; grid-template-columns: repeat(20, minmax(0, 1fr)); gap: 3px; }
@@ -384,13 +401,18 @@ footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-cont
   .stage { position: static; height: auto; padding-block: 8px; grid-template-columns: 120px minmax(0, 1fr); justify-items: start; align-items: center; gap: 12px; }
   .stage svg { max-width: 120px; }
   .status { text-align: left; min-height: 0; }
-  .ch { min-height: 0; padding-block: 72px; }
-  .hist { height: 460vh; }
-  .hist-pin .wrap { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; gap: 16px; align-items: end; padding-block: 16px 28px; }
+  .ch { min-height: 70vh; padding-block: 96px; }
+  .ch[data-f="2-3"] { min-height: 130vh; }
+  .ch[data-f="4-6"], .ch[data-f="7-9"] { min-height: 180vh; }
+  .hist { height: 800vh; }
+  .hist-pin .wrap { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; gap: 16px; align-items: end; padding-block: 16px 92px; }
   .portrait { height: 100%; min-height: 0; }
   .hist-copy { gap: 16px; }
   .year { font-size: clamp(64px, 18vw, 110px); }
-  .events { min-height: 108px; }
+  .events { min-height: 108px; gap: 8px; }
+  .ev h3 { font-size: 22px; }
+  .events.many .ev h3 { font-size: 17px; line-height: 1.35; }
+  .events.many { gap: 6px; }
   .corp { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .vgrid, .cgrid, .spec-grid { grid-template-columns: minmax(0, 1fr); }
   .biz > .wrap, .vids > .wrap, .cases > .wrap, .spec > .wrap { padding-block: 72px; }
@@ -540,14 +562,15 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--g-yel); outline
       <div class="toon-intro" id="toonIntro">
         <p class="t-kicker"><span>실화</span>윤대표의 이커머스 사장학교</p>
         <h1><span>당신이 보는 것은</span><span>누군가의 시작입니다</span></h1>
-        <p class="t-cue"><i aria-hidden="true"></i>내려서 윤대표 이야기 보기</p>
+        <button type="button" class="t-start" id="tStart"><i aria-hidden="true">▶</i>윤대표 이야기 보기</button>
+        <p class="t-auto">잠시 후 자동으로 시작합니다</p>
       </div>
-      <div class="frame" id="frame"><img src="toon/t01.webp" alt="윤동규 히스토리 웹툰 1컷" decoding="async"><img src="toon/t04.webp" alt="윤동규 히스토리 웹툰 2컷" decoding="async"><img src="toon/t05.webp" alt="윤동규 히스토리 웹툰 3컷" decoding="async"><img src="toon/t06.webp" alt="윤동규 히스토리 웹툰 4컷" decoding="async"><img src="toon/t10.webp" alt="윤동규 히스토리 웹툰 5컷" decoding="async"><img src="toon/t12.webp" alt="윤동규 히스토리 웹툰 6컷" decoding="async"><img src="toon/t13.webp" alt="윤동규 히스토리 웹툰 7컷" decoding="async"><img src="toon/t14.webp" alt="윤동규 히스토리 웹툰 8컷" decoding="async"><img src="toon/t16.webp" alt="윤동규 히스토리 웹툰 9컷" decoding="async"><img src="toon/t17.webp" alt="윤동규 히스토리 웹툰 10컷" decoding="async"><img src="toon/t20.webp" alt="윤동규 히스토리 웹툰 11컷" decoding="async"><img src="toon/t22.webp" alt="윤동규 히스토리 웹툰 12컷" decoding="async"><img src="toon/t23.webp" alt="윤동규 히스토리 웹툰 13컷" decoding="async"><img src="toon/t29.webp" alt="윤동규 히스토리 웹툰 14컷" decoding="async"><img src="toon/h01.webp" alt="2066년 회장 동규 웹툰 15컷" decoding="async"><img src="toon/h02.webp" alt="2066년 회장 동규 웹툰 16컷" decoding="async"><img src="toon/h03.webp" alt="2066년 회장 동규 웹툰 17컷" decoding="async"><img src="toon/h04.webp" alt="2066년 회장 동규 웹툰 18컷" decoding="async"><img src="toon/h05.webp" alt="2066년 회장 동규 웹툰 19컷" decoding="async"><img src="toon/h07.webp" alt="2066년 회장 동규 웹툰 20컷" decoding="async"><img src="toon/h08.webp" alt="2066년 회장 동규 웹툰 21컷" decoding="async"><img src="toon/h09.webp" alt="2066년 회장 동규 웹툰 22컷" decoding="async"><img src="toon/h10.webp" alt="2066년 회장 동규 웹툰 23컷" decoding="async"><img src="toon/h11.webp" alt="2066년 회장 동규 웹툰 24컷" decoding="async"><img src="toon/h12.webp" alt="2066년 회장 동규 웹툰 25컷" decoding="async"><p class="toon-cap" id="toonCap"></p></div>
+      <div class="frame" id="frame" tabindex="0" role="group" aria-roledescription="웹툰 넘기기" aria-label="윤동규 히스토리 웹툰"><div class="t-bars" id="toonBars" aria-hidden="true"></div><img src="toon/t01.webp" alt="윤동규 히스토리 웹툰 1컷" decoding="async"><img src="toon/t04.webp" alt="윤동규 히스토리 웹툰 2컷" decoding="async"><img src="toon/t05.webp" alt="윤동규 히스토리 웹툰 3컷" decoding="async"><img src="toon/t06.webp" alt="윤동규 히스토리 웹툰 4컷" decoding="async"><img src="toon/t10.webp" alt="윤동규 히스토리 웹툰 5컷" decoding="async"><img src="toon/t12.webp" alt="윤동규 히스토리 웹툰 6컷" decoding="async"><img src="toon/t13.webp" alt="윤동규 히스토리 웹툰 7컷" decoding="async"><img src="toon/t14.webp" alt="윤동규 히스토리 웹툰 8컷" decoding="async"><img src="toon/t16.webp" alt="윤동규 히스토리 웹툰 9컷" decoding="async"><img src="toon/t17.webp" alt="윤동규 히스토리 웹툰 10컷" decoding="async"><img src="toon/t20.webp" alt="윤동규 히스토리 웹툰 11컷" decoding="async"><img src="toon/t22.webp" alt="윤동규 히스토리 웹툰 12컷" decoding="async"><img src="toon/t23.webp" alt="윤동규 히스토리 웹툰 13컷" decoding="async"><img src="toon/t29.webp" alt="윤동규 히스토리 웹툰 14컷" decoding="async"><img src="toon/h01.webp" alt="2066년 회장 동규 웹툰 15컷" decoding="async"><img src="toon/h02.webp" alt="2066년 회장 동규 웹툰 16컷" decoding="async"><img src="toon/h03.webp" alt="2066년 회장 동규 웹툰 17컷" decoding="async"><img src="toon/h04.webp" alt="2066년 회장 동규 웹툰 18컷" decoding="async"><img src="toon/h05.webp" alt="2066년 회장 동규 웹툰 19컷" decoding="async"><img src="toon/h07.webp" alt="2066년 회장 동규 웹툰 20컷" decoding="async"><img src="toon/h08.webp" alt="2066년 회장 동규 웹툰 21컷" decoding="async"><img src="toon/h09.webp" alt="2066년 회장 동규 웹툰 22컷" decoding="async"><img src="toon/h10.webp" alt="2066년 회장 동규 웹툰 23컷" decoding="async"><img src="toon/h11.webp" alt="2066년 회장 동규 웹툰 24컷" decoding="async"><img src="toon/h12.webp" alt="2066년 회장 동규 웹툰 25컷" decoding="async"><p class="toon-cap" id="toonCap"></p></div>
       <div class="toon-hud" aria-hidden="true">
         <span class="hud-ch" id="toonCh">대학 시절</span>
         <span class="hud-n" id="toonCount">01 / 25</span>
       </div>
-      <div class="toon-ticks" id="toonTicks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="toon-ctl" id="toonCtl"><button type="button" id="tPrev" aria-label="이전 컷">‹</button><button type="button" id="tPlay" aria-label="일시정지">❚❚</button><button type="button" id="tNext" aria-label="다음 컷">›</button><span class="t-hint">그림을 눌러도 넘어갑니다</span><a class="t-skip" href="#history">건너뛰기</a></div>
     </div>
   </section>
 
@@ -851,36 +874,85 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--g-yel); outline
   const CAP = ["","","","","","","","","","","","","","","그로부터 40년 뒤 2066년<br>여든 살이 된 윤동규 회장","직원 80명이 고개 숙여 배웅하는 퇴근길","오늘도 후배 사장들의 질문에 답한다","가질 수 있는 건 다 가졌다","그런데 가끔 그 시절 사진을 꺼내 본다","그날 밤 회장은 조용히 잠들었다","다음 날 아침 손등의 주름이 사라져 있었다","거울 속에 스무 살의 내가 있었다","회사도 저택도 직원도 없다<br>남은 건 4평 원룸 보증금뿐","그래도 하나는 기억한다<br>어떻게 다시 올라가는지","이번엔 혼자 오르지 않는다<br>당신과 같이 올라간다"];
   const toonCap = document.getElementById('toonCap');
   const toonCh = $('toonCh'), toonCount = $('toonCount'), toonAmb = $('toonAmb'), toonIntro = $('toonIntro'), frameEl = $('frame');
-  const ticks = [...document.querySelectorAll('#toonTicks i')], hud = document.querySelector('.toon-hud'), tickBar = $('toonTicks');
-  let toonLast = -1;
-  function readToon() {
-    const r = toon.getBoundingClientRect();
-    const p = clamp(-r.top / (r.height - innerHeight));
-    const intro = clamp(p / 0.07);
-    toonIntro.style.opacity = 1 - clamp(intro * 1.6);
-    toonIntro.style.transform = RM ? '' : `translateY(${-60 * intro}px) scale(${1 - 0.06 * intro})`;
-    frameEl.style.opacity = clamp((intro - 0.35) / 0.65);
-    frameEl.style.transform = `scale(${0.86 + 0.14 * outCubic(intro)})`;
-    hud.style.opacity = tickBar.style.opacity = clamp((intro - 0.6) / 0.4);
-    const f = clamp((p - 0.07) / 0.88) * (toonImgs.length - 1);
-    const i = Math.floor(f), k = f - i;
-    toonImgs.forEach((im, j) => {
-      let o = 0, sc = 1, ty = 0;
-      if (j === i) { o = 1; sc = RM ? 1 : 1.06 - 0.06 * k; }
-      else if (j === i + 1) { const e = clamp((k - 0.62) / 0.38); o = e; sc = RM ? 1 : 1.06; ty = RM ? 0 : (1 - outCubic(e)) * 26; }
-      im.style.opacity = o;
-      im.style.transform = o ? `translateY(${ty}px) scale(${sc})` : '';
-    });
-    const n = Math.min(toonImgs.length, Math.round(f) + 1);
-    if (n !== toonLast) {
-      toonLast = n;
-      toonCount.textContent = `${String(n).padStart(2, '0')} / ${toonImgs.length}`;
-      toonCh.textContent = CH.filter(c => c[0] <= n).pop()[1];
-      toonAmb.src = toonImgs[n - 1].src;
-      toonCap.innerHTML = CAP[n - 1]; toonCap.hidden = !CAP[n - 1]; toonCap.classList.remove('in'); void toonCap.offsetWidth; toonCap.classList.add('in');
-      ticks.forEach((t, j) => { t.classList.toggle('on', j < n - 1); t.classList.toggle('now', j === n - 1); });
-    }
+  // 스토리처럼 한 컷씩 자동 재생 그림을 누르면 넘기고 길게 누르면 멈춘다 왼쪽 3분의 1은 이전 컷
+  const N = toonImgs.length, barsEl = $('toonBars');
+  barsEl.innerHTML = '<i><b></b></i>'.repeat(N);
+  const barB = [...barsEl.querySelectorAll('b')];
+  const tPlay = $('tPlay');
+  const dur = j => CAP[j] ? 5200 : 4200;
+  let cur = -1, playing = false, started = false, el = 0, last = 0, held = false, inView = true, autoT = 0;
+  function setPlay() {
+    const end = !playing && cur === N - 1 && el >= dur(cur);
+    tPlay.textContent = end ? '다시 보기' : playing ? '❚❚' : '▶';
+    tPlay.classList.toggle('wide', end);
+    tPlay.setAttribute('aria-label', end ? '처음부터 다시 보기' : playing ? '일시정지' : '재생');
+    frameEl.classList.toggle('paused', !playing || held || !inView);
   }
+  function show(j) {
+    j = Math.max(0, Math.min(N - 1, j)); cur = j; el = 0;
+    toonImgs.forEach((im, k) => {
+      const on = k === j;
+      if (on) { im.style.setProperty('--d', `${dur(j)}ms`); im.classList.remove('on'); void im.offsetWidth; }
+      im.classList.toggle('on', on);
+    });
+    barB.forEach((b, k) => { b.style.transform = `scaleX(${k < j ? 1 : 0})`; });
+    const n = j + 1;
+    toonCount.textContent = `${String(n).padStart(2, '0')} / ${N}`;
+    toonCh.textContent = CH.filter(c => c[0] <= n).pop()[1];
+    toonAmb.src = toonImgs[j].src;
+    toonCap.innerHTML = CAP[j]; toonCap.hidden = !CAP[j]; toonCap.classList.remove('in'); void toonCap.offsetWidth; toonCap.classList.add('in');
+    if (toonImgs[j + 1]) toonImgs[j + 1].decode?.().catch(() => {});
+    setPlay();
+  }
+  function start() {
+    clearTimeout(autoT);
+    if (!started) { started = true; toon.classList.add('started'); show(0); }
+    playing = true; setPlay();
+  }
+  function step(d) { if (!started) return start(); show(cur + d); playing = true; setPlay(); }
+  function loop(t) {
+    requestAnimationFrame(loop);
+    const dt = Math.min(100, t - (last || t)); last = t;
+    if (!playing || held || !inView || cur < 0) return;
+    el += dt;
+    barB[cur].style.transform = `scaleX(${Math.min(1, el / dur(cur))})`;
+    if (el >= dur(cur)) { if (cur < N - 1) show(cur + 1); else { playing = false; setPlay(); } }
+  }
+  requestAnimationFrame(loop);
+  $('tStart').addEventListener('click', start);
+  $('tPrev').addEventListener('click', () => step(-1));
+  $('tNext').addEventListener('click', () => step(1));
+  tPlay.addEventListener('click', () => {
+    if (!started) return start();
+    if (!playing && cur === N - 1 && el >= dur(cur)) { show(0); playing = true; }
+    else playing = !playing;
+    setPlay();
+  });
+  // 탭 스와이프 길게 누르기
+  let px = 0, py = 0, pt = 0, holdT = 0;
+  frameEl.addEventListener('pointerdown', e => { px = e.clientX; py = e.clientY; pt = performance.now(); holdT = setTimeout(() => { held = true; setPlay(); }, 260); });
+  const endPress = e => {
+    clearTimeout(holdT);
+    const wasHeld = held; held = false;
+    if (e.type === 'pointerup' && !wasHeld) {
+      const dx = e.clientX - px, dy = e.clientY - py;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) step(dx < 0 ? 1 : -1);
+      else if (Math.abs(dx) < 12 && Math.abs(dy) < 12) {
+        const r = frameEl.getBoundingClientRect();
+        step(e.clientX - r.left < r.width / 3 ? -1 : 1);
+      }
+    }
+    setPlay();
+  };
+  frameEl.addEventListener('pointerup', endPress);
+  frameEl.addEventListener('pointercancel', endPress);
+  frameEl.addEventListener('pointerleave', e => { if (held) endPress(e); });
+  frameEl.addEventListener('contextmenu', e => e.preventDefault());
+  frameEl.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); step(1); } else if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); } });
+  new IntersectionObserver(e => { inView = e[0].intersectionRatio > 0.45; setPlay(); }, {threshold: [0, 0.45, 1]}).observe(toon);
+  document.addEventListener('visibilitychange', () => { inView = !document.hidden; setPlay(); });
+  toonImgs.forEach(im => { im.loading = 'eager'; });
+  autoT = setTimeout(() => { if (!started && scrollY < innerHeight * 0.5) start(); }, 2600);
 
 
   // 마지막 질문 스크롤 진행만큼 단어에 불을 켜고 따옴표 구절은 코발트로 남긴다
@@ -898,22 +970,28 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--g-yel); outline
   const portrait = $('portrait'), pcs = [...portrait.querySelectorAll('.pc')], pTag = $('pTag');
   let pStage = 0;
   let histIdx = -1;
+  // 연도별로 묶어 한 해씩 보여준다 한 해 안의 이력은 시간차로 하나씩 들어온다
+  const EVY = ['2020','2020','2021','2021','2022','2023','2023','2023','2024','2024','2025','2025','2026','2026','2026','2026','2026'];
+  const YEARS = [...new Set(EVY)], NY = YEARS.length, evBox = $('events');
   function readHist() {
     const r = hist.getBoundingClientRect();
     const p = clamp(-r.top / (r.height - innerHeight));
-    const idx = Math.min(NE - 1, Math.floor(p * NE));
-    bars.forEach((b, i) => b.style.setProperty('--f', clamp(p * NE - i)));
+    const idx = Math.min(NY - 1, Math.floor(p * NY));
+    const shown = EVY.filter(y => y <= YEARS[idx]).length;
+    bars.forEach((b, i) => b.style.setProperty('--f', i < shown ? 1 : 0));
     portrait.style.setProperty('--d', (0.55 + p * 0.5).toFixed(3));
     portrait.style.setProperty('--g', (1 - clamp(p * 2.2)).toFixed(3));
     portrait.style.setProperty('--py', `${(1 - p) * 30}px`);
-    const ps = p < 0.22 ? 0 : p < 0.45 ? 1 : p < 0.9 ? 2 : 3;
+    const ps = idx <= 1 ? (p < 0.12 ? 0 : 1) : idx < NY - 1 ? 2 : 3;
     if (ps !== pStage) { pStage = ps; pcs.forEach((im, i) => im.classList.toggle('on', i === ps)); pTag.textContent = ['대학 시절','동대문 창업','지금','게임 속 2066년 회장'][ps]; }
     if (idx === histIdx) return;
     histIdx = idx;
-    ['2020','2020','2021','2021','2022','2023','2023','2023','2024','2024','2025','2025','2026','2026','2026','2026','2026'][idx].split('').forEach((d, i) => { yearCols[i].style.transform = `translateY(${-d}em)`; yearCols[i].style.transitionDelay = `${i * 60}ms`; });
-    evs.forEach((e, i) => { e.classList.toggle('on', i === idx); e.classList.toggle('gone', i < idx); });
-    const lv = $('lvup'); lv.textContent = `레벨 업 Lv.${idx + 1}`; lv.classList.remove('pop'); void lv.offsetWidth; if (idx > 0) lv.classList.add('pop');
-    $('saveEnd').classList.toggle('on', idx === NE - 1);
+    YEARS[idx].split('').forEach((d, i) => { yearCols[i].style.transform = `translateY(${-d}em)`; yearCols[i].style.transitionDelay = `${i * 60}ms`; });
+    let k = 0;
+    evs.forEach((e, i) => { const on = EVY[i] === YEARS[idx]; e.classList.remove('on'); if (on) { e.style.setProperty('--i', k++); void e.offsetWidth; e.classList.add('on'); } });
+    evBox.classList.toggle('many', k > 3);
+    const lv = $('lvup'); lv.textContent = `레벨 업 Lv.${shown}`; lv.classList.remove('pop'); void lv.offsetWidth; if (idx > 0) lv.classList.add('pop');
+    $('saveEnd').classList.toggle('on', idx === NY - 1);
   }
 
 
@@ -949,7 +1027,6 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--g-yel); outline
 
 
   function readScroll() {
-    readToon();
     readFin();
     readHist();
     const mid = innerHeight * 0.45;
