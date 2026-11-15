@@ -562,9 +562,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--g-yel); outline
       <div class="toon-intro" id="toonIntro">
         <p class="t-kicker"><span>실화</span>윤대표의 이커머스 사장학교</p>
         <h1><span>당신이 보는 것은</span><span>누군가의 시작입니다</span></h1>
-        <button type="button" class="t-start" id="tStart"><i aria-hidden="true">▶</i>윤대표 이야기 보기</button>
-        <p class="t-auto">잠시 후 자동으로 시작합니다</p>
-      </div>
+              </div>
       <div class="frame" id="frame" tabindex="0" role="group" aria-roledescription="웹툰 넘기기" aria-label="윤동규 히스토리 웹툰"><div class="t-bars" id="toonBars" aria-hidden="true"></div><img src="toon/t01.webp" alt="윤동규 히스토리 웹툰 1컷" decoding="async"><img src="toon/t04.webp" alt="윤동규 히스토리 웹툰 2컷" decoding="async"><img src="toon/t05.webp" alt="윤동규 히스토리 웹툰 3컷" decoding="async"><img src="toon/t06.webp" alt="윤동규 히스토리 웹툰 4컷" decoding="async"><img src="toon/t10.webp" alt="윤동규 히스토리 웹툰 5컷" decoding="async"><img src="toon/t12.webp" alt="윤동규 히스토리 웹툰 6컷" decoding="async"><img src="toon/t13.webp" alt="윤동규 히스토리 웹툰 7컷" decoding="async"><img src="toon/t14.webp" alt="윤동규 히스토리 웹툰 8컷" decoding="async"><img src="toon/t16.webp" alt="윤동규 히스토리 웹툰 9컷" decoding="async"><img src="toon/t17.webp" alt="윤동규 히스토리 웹툰 10컷" decoding="async"><img src="toon/t20.webp" alt="윤동규 히스토리 웹툰 11컷" decoding="async"><img src="toon/t22.webp" alt="윤동규 히스토리 웹툰 12컷" decoding="async"><img src="toon/t23.webp" alt="윤동규 히스토리 웹툰 13컷" decoding="async"><img src="toon/t29.webp" alt="윤동규 히스토리 웹툰 14컷" decoding="async"><img src="toon/h01.webp" alt="2066년 회장 동규 웹툰 15컷" decoding="async"><img src="toon/h02.webp" alt="2066년 회장 동규 웹툰 16컷" decoding="async"><img src="toon/h03.webp" alt="2066년 회장 동규 웹툰 17컷" decoding="async"><img src="toon/h04.webp" alt="2066년 회장 동규 웹툰 18컷" decoding="async"><img src="toon/h05.webp" alt="2066년 회장 동규 웹툰 19컷" decoding="async"><img src="toon/h07.webp" alt="2066년 회장 동규 웹툰 20컷" decoding="async"><img src="toon/h08.webp" alt="2066년 회장 동규 웹툰 21컷" decoding="async"><img src="toon/h09.webp" alt="2066년 회장 동규 웹툰 22컷" decoding="async"><img src="toon/h10.webp" alt="2066년 회장 동규 웹툰 23컷" decoding="async"><img src="toon/h11.webp" alt="2066년 회장 동규 웹툰 24컷" decoding="async"><img src="toon/h12.webp" alt="2066년 회장 동규 웹툰 25컷" decoding="async"><p class="toon-cap" id="toonCap"></p></div>
       <div class="toon-hud" aria-hidden="true">
         <span class="hud-ch" id="toonCh">대학 시절</span>
@@ -919,7 +917,6 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--g-yel); outline
     if (el >= dur(cur)) { if (cur < N - 1) show(cur + 1); else { playing = false; setPlay(); } }
   }
   requestAnimationFrame(loop);
-  $('tStart').addEventListener('click', start);
   $('tPrev').addEventListener('click', () => step(-1));
   $('tNext').addEventListener('click', () => step(1));
   tPlay.addEventListener('click', () => {
@@ -952,7 +949,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--g-yel); outline
   new IntersectionObserver(e => { inView = e[0].intersectionRatio > 0.45; setPlay(); }, {threshold: [0, 0.45, 1]}).observe(toon);
   document.addEventListener('visibilitychange', () => { inView = !document.hidden; setPlay(); });
   toonImgs.forEach(im => { im.loading = 'eager'; });
-  autoT = setTimeout(() => { if (!started && scrollY < innerHeight * 0.5) start(); }, 2600);
+  start();
 
 
   // 마지막 질문 스크롤 진행만큼 단어에 불을 켜고 따옴표 구절은 코발트로 남긴다
